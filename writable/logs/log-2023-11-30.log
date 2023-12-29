@@ -1,0 +1,125 @@
+CRITICAL - 2023-11-30 07:23:26 --> Invalid file: "admin/admin/home.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/admin/home.php')
+ 2 SYSTEMPATH\View\View.php(469): CodeIgniter\View\View->render('admin/admin/home', null, true)
+ 3 APPPATH\Views\admin\layout.php(90): CodeIgniter\View\View->include('admin/admin/home')
+ 4 SYSTEMPATH\View\View.php(228): include('G:\\xampp\\htdocs\\dishtavo2\\app\\Views\\admin\\layout.php')
+ 5 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/layout', [], true)
+ 7 APPPATH\Controllers\admin\Home.php(12): view('admin/layout', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Home->index()
+ 9 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Home))
+10 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 09:17:06 --> Return value of App\Controllers\admin\Home::index() must be of the type string, none returned
+in APPPATH\Controllers\admin\Home.php on line 20.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:07:39 --> Undefined variable: data
+in APPPATH\Controllers\admin\Login.php on line 44.
+ 1 APPPATH\Controllers\admin\Login.php(44): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: data', 'G:\\xampp\\htdocs\\dishtavo2\\app\\Controllers\\admin\\Login.php', 44, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:28:26 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:33:18 --> Call to undefined method CodeIgniter\HTTP\RedirectResponse::getURI()
+in APPPATH\Controllers\admin\Login.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:36:13 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:38:27 --> Call to undefined method CodeIgniter\HTTP\RedirectResponse::refresh()
+in APPPATH\Controllers\admin\Login.php on line 38.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:39:06 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 38.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:41:00 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:41:15 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:44:03 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:44:09 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:45:17 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:48:05 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:48:09 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:50:29 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 39.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:50:37 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 39.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:52:35 --> The route for "http://localhost/dishtavo2/admin/home" cannot be found.
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 62.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(62): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('http://localhost/dishtavo2/admin/home')
+ 2 SYSTEMPATH\Common.php(878): CodeIgniter\HTTP\RedirectResponse->route(false)
+ 3 APPPATH\Controllers\admin\Login.php(39): redirect('http://localhost/dishtavo2/admin/home')
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-30 11:54:50 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 45.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()

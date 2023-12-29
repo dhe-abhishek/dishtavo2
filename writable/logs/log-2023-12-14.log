@@ -1,0 +1,40 @@
+INFO - 2023-12-14 04:24:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-14 04:24:31 --> mysqli_sql_exception: Table 'dishtavo.menu_roles' doesn't exist in D:\xampp\htdocs\dishtavo2\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 D:\xampp\htdocs\dishtavo2\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `dsh2_me...', 0)
+#1 D:\xampp\htdocs\dishtavo2\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dsh2_me...')
+#2 D:\xampp\htdocs\dishtavo2\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dsh2_me...')
+#3 D:\xampp\htdocs\dishtavo2\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `dsh2_me...', Array, false)
+#4 D:\xampp\htdocs\dishtavo2\system\Model.php(237): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\xampp\htdocs\dishtavo2\system\BaseModel.php(624): CodeIgniter\Model->doFindAll(0, 0)
+#6 D:\xampp\htdocs\dishtavo2\app\Models\MenuModel.php(24): CodeIgniter\BaseModel->findAll()
+#7 D:\xampp\htdocs\dishtavo2\app\Controllers\admin\Home.php(19): App\Models\MenuModel->getMenuForRole(1)
+#8 D:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(914): App\Controllers\admin\Home->__construct()
+#9 D:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+#10 D:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 D:\xampp\htdocs\dishtavo2\index.php(79): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-12-14 04:24:31 --> Table 'dishtavo.menu_roles' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `dsh2_menu`.*
+FROM `dsh2_menu`
+LEFT JOIN `menu_roles` ON `menu_roles`.`menu_id` = `dsh2_menu`.`id`
+WHERE `menu_roles`.`role_id` = :menu_roles.role_id:
+OR `dsh2_menu`.`parent_id` = :dsh2_menu.parent_id:
+GROUP BY `dsh2_menu`.`id`
+ORDER BY `dsh2_menu`.`parent_id` ASC, `dsh2_menu`.`id` ASC', [...], false)
+ 2 SYSTEMPATH\Model.php(237): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(624): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\MenuModel.php(24): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\admin\Home.php(19): App\Models\MenuModel->getMenuForRole(1)
+ 6 SYSTEMPATH\CodeIgniter.php(914): App\Controllers\admin\Home->__construct()
+ 7 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-14 04:28:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-14 04:36:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-14 09:31:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-14 10:32:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-14 10:32:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-14 10:32:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-14 10:32:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

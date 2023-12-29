@@ -1,0 +1,322 @@
+CRITICAL - 2023-12-01 05:39:28 --> Invalid file: "dish2o_admin/login.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dish2o_admin/login.php')
+ 2 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('dish2o_admin/login', [], true)
+ 3 APPPATH\Controllers\admin\Login.php(56): view('dish2o_admin/login', [])
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 05:39:34 --> Invalid file: "dish2o_admin/login.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dish2o_admin/login.php')
+ 2 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('dish2o_admin/login', [], true)
+ 3 APPPATH\Controllers\admin\Login.php(56): view('dish2o_admin/login', [])
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 05:41:20 --> Invalid file: "dish2o_admin/login.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dish2o_admin/login.php')
+ 2 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('dish2o_admin/login', [], true)
+ 3 APPPATH\Controllers\admin\Login.php(56): view('dish2o_admin/login', [])
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 05:41:26 --> Invalid file: "dish2o_admin/login.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dish2o_admin/login.php')
+ 2 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('dish2o_admin/login', [], true)
+ 3 APPPATH\Controllers\admin\Login.php(56): view('dish2o_admin/login', [])
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 05:41:46 --> Invalid file: "dish2o_admin/login.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dish2o_admin/login.php')
+ 2 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('dish2o_admin/login', [], true)
+ 3 APPPATH\Controllers\admin\Login.php(56): view('dish2o_admin/login', [])
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 05:42:08 --> Invalid file: "dish2o_admin/login.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dish2o_admin/login.php')
+ 2 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('dish2o_admin/login', [], true)
+ 3 APPPATH\Controllers\admin\Login.php(56): view('dish2o_admin/login', [])
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 05:56:50 --> Invalid file: "dist2o_admin/home.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dist2o_admin/home.php')
+ 2 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('dist2o_admin/home', [], true)
+ 3 APPPATH\Controllers\admin\Login.php(45): view('dist2o_admin/home', [])
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 05:57:12 --> Invalid file: "dist2o_admin/home.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dist2o_admin/home.php')
+ 2 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('dist2o_admin/home', [], true)
+ 3 APPPATH\Controllers\admin\Login.php(45): view('dist2o_admin/home', [])
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 05:57:47 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 38.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 05:57:54 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 38.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 06:23:48 --> The route for "/dish2o_admin/home" cannot be found.
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 62.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(62): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('/dish2o_admin/home')
+ 2 APPPATH\Controllers\admin\Login.php(44): CodeIgniter\HTTP\RedirectResponse->route(false)
+ 3 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 06:25:24 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 44.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 06:28:11 --> The route for "admin/home" cannot be found.
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 62.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(62): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('admin/home')
+ 2 SYSTEMPATH\Common.php(878): CodeIgniter\HTTP\RedirectResponse->route(false)
+ 3 APPPATH\Controllers\admin\Login.php(45): redirect('admin/home')
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 06:28:31 --> The route for "dish2o_admin/home" cannot be found.
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 62.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(62): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('dish2o_admin/home')
+ 2 SYSTEMPATH\Common.php(878): CodeIgniter\HTTP\RedirectResponse->route(false)
+ 3 APPPATH\Controllers\admin\Login.php(45): redirect('dish2o_admin/home')
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 06:29:01 --> The route for "/dish2o_admin/home" cannot be found.
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 62.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(62): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('/dish2o_admin/home')
+ 2 SYSTEMPATH\Common.php(878): CodeIgniter\HTTP\RedirectResponse->route(false)
+ 3 APPPATH\Controllers\admin\Login.php(45): redirect('/dish2o_admin/home')
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 06:49:51 --> The route for "/dish2o_admin/home" cannot be found.
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 62.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(62): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('/dish2o_admin/home')
+ 2 SYSTEMPATH\Common.php(878): CodeIgniter\HTTP\RedirectResponse->route(false)
+ 3 APPPATH\Controllers\admin\Login.php(45): redirect('/dish2o_admin/home')
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 06:50:16 --> The route for "/dish2o_admin/home" cannot be found.
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 62.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(62): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('/dish2o_admin/home')
+ 2 APPPATH\Controllers\admin\Login.php(44): CodeIgniter\HTTP\RedirectResponse->route(false)
+ 3 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 06:50:20 --> The route for "/dish2o_admin/home" cannot be found.
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 62.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(62): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('/dish2o_admin/home')
+ 2 APPPATH\Controllers\admin\Login.php(44): CodeIgniter\HTTP\RedirectResponse->route(false)
+ 3 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 06:51:27 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 44.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 06:52:09 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 44.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 06:52:51 --> The route for "http://localhost/dishtavo2/dish2o_admin/home" cannot be found.
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 62.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(62): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('http://localhost/dishtavo2/dish2o_admin/home')
+ 2 SYSTEMPATH\Common.php(878): CodeIgniter\HTTP\RedirectResponse->route(false)
+ 3 APPPATH\Controllers\admin\Login.php(44): redirect('http://localhost/dishtavo2/dish2o_admin/home')
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 06:53:58 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 44.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 06:59:15 --> Return value of App\Controllers\admin\Login::index() must be of the type string, object returned
+in APPPATH\Controllers\admin\Login.php on line 44.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-01 07:05:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-01 07:05:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-01 07:09:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-01 07:09:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-01 07:09:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-01 07:10:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-01 07:10:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-12-01 07:22:01 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in G:\xampp\htdocs\dishtavo2\system\Database\MySQLi\Connection.php:185
+Stack trace:
+#0 G:\xampp\htdocs\dishtavo2\system\Database\MySQLi\Connection.php(185): mysqli->real_connect('localhost', '', '', '', 3306, '', 0)
+#1 G:\xampp\htdocs\dishtavo2\system\Database\BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 G:\xampp\htdocs\dishtavo2\system\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 G:\xampp\htdocs\dishtavo2\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 G:\xampp\htdocs\dishtavo2\system\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+#5 G:\xampp\htdocs\dishtavo2\system\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('san', 'username', Array, NULL, 'username')
+#6 G:\xampp\htdocs\dishtavo2\system\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('username', 'username', 'san', Array, Array)
+#7 G:\xampp\htdocs\dishtavo2\app\Controllers\admin\Login.php(29): CodeIgniter\Validation\Validation->run()
+#8 G:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+#9 G:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+#10 G:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 G:\xampp\htdocs\dishtavo2\index.php(79): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in G:\xampp\htdocs\dishtavo2\system\Database\MySQLi\Connection.php:229
+Stack trace:
+#0 G:\xampp\htdocs\dishtavo2\system\Database\BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 G:\xampp\htdocs\dishtavo2\system\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 G:\xampp\htdocs\dishtavo2\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#3 G:\xampp\htdocs\dishtavo2\system\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+#4 G:\xampp\htdocs\dishtavo2\system\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('san', 'username', Array, NULL, 'username')
+#5 G:\xampp\htdocs\dishtavo2\system\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('username', 'username', 'san', Array, Array)
+#6 G:\xampp\htdocs\dishtavo2\app\Controllers\admin\Login.php(29): CodeIgniter\Validation\Validation->run()
+#7 G:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+#8 G:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+#9 G:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 G:\xampp\htdocs\dishtavo2\index.php(79): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-12-01 07:22:01 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+in SYSTEMPATH\Database\BaseConnection.php on line 428.
+ 1 SYSTEMPATH\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `users`
+WHERE `username` = :username:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('san', 'username', [...], null, 'username')
+ 5 SYSTEMPATH\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('username', 'username', 'san', [...], [...])
+ 6 APPPATH\Controllers\admin\Login.php(29): CodeIgniter\Validation\Validation->run()
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-12-01 07:22:12 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in G:\xampp\htdocs\dishtavo2\system\Database\MySQLi\Connection.php:185
+Stack trace:
+#0 G:\xampp\htdocs\dishtavo2\system\Database\MySQLi\Connection.php(185): mysqli->real_connect('localhost', '', '', '', 3306, '', 0)
+#1 G:\xampp\htdocs\dishtavo2\system\Database\BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 G:\xampp\htdocs\dishtavo2\system\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 G:\xampp\htdocs\dishtavo2\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 G:\xampp\htdocs\dishtavo2\system\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+#5 G:\xampp\htdocs\dishtavo2\system\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('san', 'username', Array, NULL, 'username')
+#6 G:\xampp\htdocs\dishtavo2\system\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('username', 'username', 'san', Array, Array)
+#7 G:\xampp\htdocs\dishtavo2\app\Controllers\admin\Login.php(29): CodeIgniter\Validation\Validation->run()
+#8 G:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+#9 G:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+#10 G:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 G:\xampp\htdocs\dishtavo2\index.php(79): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in G:\xampp\htdocs\dishtavo2\system\Database\MySQLi\Connection.php:229
+Stack trace:
+#0 G:\xampp\htdocs\dishtavo2\system\Database\BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 G:\xampp\htdocs\dishtavo2\system\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 G:\xampp\htdocs\dishtavo2\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#3 G:\xampp\htdocs\dishtavo2\system\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+#4 G:\xampp\htdocs\dishtavo2\system\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('san', 'username', Array, NULL, 'username')
+#5 G:\xampp\htdocs\dishtavo2\system\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('username', 'username', 'san', Array, Array)
+#6 G:\xampp\htdocs\dishtavo2\app\Controllers\admin\Login.php(29): CodeIgniter\Validation\Validation->run()
+#7 G:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+#8 G:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+#9 G:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 G:\xampp\htdocs\dishtavo2\index.php(79): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-12-01 07:22:12 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+in SYSTEMPATH\Database\BaseConnection.php on line 428.
+ 1 SYSTEMPATH\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `users`
+WHERE `username` = :username:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('san', 'username', [...], null, 'username')
+ 5 SYSTEMPATH\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('username', 'username', 'san', [...], [...])
+ 6 APPPATH\Controllers\admin\Login.php(29): CodeIgniter\Validation\Validation->run()
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 09:51:58 --> Call to undefined function set_value()
+in APPPATH\Views\admin\login.php on line 105.
+ 1 SYSTEMPATH\View\View.php(228): include()
+ 2 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/login', [], true)
+ 4 APPPATH\Controllers\admin\Login.php(20): view('admin/login', [])
+ 5 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 09:52:53 --> Call to undefined function set_value()
+in APPPATH\Views\admin\login.php on line 105.
+ 1 SYSTEMPATH\View\View.php(228): include()
+ 2 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/login', [], true)
+ 4 APPPATH\Controllers\admin\Login.php(20): view('admin/login', [])
+ 5 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 09:52:55 --> Call to undefined function set_value()
+in APPPATH\Views\admin\login.php on line 105.
+ 1 SYSTEMPATH\View\View.php(228): include()
+ 2 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/login', [], true)
+ 4 APPPATH\Controllers\admin\Login.php(20): view('admin/login', [])
+ 5 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-01 09:53:04 --> Call to undefined function set_value()
+in APPPATH\Views\admin\login.php on line 105.
+ 1 SYSTEMPATH\View\View.php(228): include()
+ 2 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/login', [], true)
+ 4 APPPATH\Controllers\admin\Login.php(20): view('admin/login', [])
+ 5 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()

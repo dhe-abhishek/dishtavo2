@@ -1,0 +1,129 @@
+CRITICAL - 2023-12-08 11:56:26 --> The framework needs the following extension(s) installed and loaded: intl.
+in SYSTEMPATH\CodeIgniter.php on line 252.
+ 1 SYSTEMPATH\CodeIgniter.php(252): CodeIgniter\Exceptions\FrameworkException::forMissingExtension('intl')
+ 2 SYSTEMPATH\CodeIgniter.php(214): CodeIgniter\CodeIgniter->resolvePlatformExtensions()
+ 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2023-12-08 11:56:26 --> Uncaught Error: Class 'Locale' not found in D:\xampp\htdocs\dishtavo2\system\Helpers\number_helper.php:136
+Stack trace:
+#0 D:\xampp\htdocs\dishtavo2\system\Helpers\number_helper.php(55): format_number(6, 2, NULL, Array)
+#1 D:\xampp\htdocs\dishtavo2\system\Debug\BaseExceptionHandler.php(145): number_to_size(6, 2)
+#2 D:\xampp\htdocs\dishtavo2\app\Views\errors\html\error_exception.php(361): CodeIgniter\Debug\BaseExceptionHandler::describeMemory(6291456)
+#3 D:\xampp\htdocs\dishtavo2\system\Debug\BaseExceptionHandler.php(241): include('D:\\xampp\\htdocs...')
+#4 D:\xampp\htdocs\dishtavo2\system\Debug\BaseExceptionHandler.php(244): CodeIgniter\Debug\BaseExceptionHandler->CodeIgniter\Debug\{closure}()
+#5 D:\xampp\htdocs\dishtavo2\system\Debug\ExceptionHandler.php(112): CodeIgniter\Debug\BaseExceptionHandler->render(Object(CodeIgniter\Exceptions\FrameworkException), 500, 'D:\\xampp\\htdocs...')
+#6 D:\xampp\htdocs\dishtavo2\system\Debug\Exceptions.php(149): CodeIgniter\Debug\ExceptionHandler->handle(Object(CodeIgniter\
+【Previous Exception】
+CodeIgniter\Exceptions\FrameworkException
+The framework needs the following extension(s) installed and loaded: intl.
+#0 D:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(252): CodeIgniter\Exceptions\FrameworkException::forMissingExtension('intl')
+#1 D:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(214): CodeIgniter\CodeIgniter->resolvePlatformExtensions()
+#2 D:\xampp\htdocs\dishtavo2\index.php(67): CodeIgniter\CodeIgniter->initialize()
+#3 {main}
+in SYSTEMPATH\Helpers\number_helper.php on line 136.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2023-12-08 11:09:10 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'dishtavo' in D:\xampp\htdocs\dishtavo2\system\Database\MySQLi\Connection.php:185
+Stack trace:
+#0 D:\xampp\htdocs\dishtavo2\system\Database\MySQLi\Connection.php(185): mysqli->real_connect('localhost', 'root', '', 'dishtavo', 3306, '', 0)
+#1 D:\xampp\htdocs\dishtavo2\system\Database\BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 D:\xampp\htdocs\dishtavo2\system\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 D:\xampp\htdocs\dishtavo2\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 D:\xampp\htdocs\dishtavo2\system\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\xampp\htdocs\dishtavo2\system\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('admin', 'username', Array, NULL, 'username')
+#6 D:\xampp\htdocs\dishtavo2\system\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('username', 'username', 'admin', Array, Array)
+#7 D:\xampp\htdocs\dishtavo2\app\Controllers\admin\Login.php(45): CodeIgniter\Validation\Validation->run()
+#8 D:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(942): App\Controllers\admin\Login->validatelogin()
+#9 D:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+#10 D:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 D:\xampp\htdocs\dishtavo2\index.php(79): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'dishtavo' in D:\xampp\htdocs\dishtavo2\system\Database\MySQLi\Connection.php:229
+Stack trace:
+#0 D:\xampp\htdocs\dishtavo2\system\Database\BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 D:\xampp\htdocs\dishtavo2\system\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 D:\xampp\htdocs\dishtavo2\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#3 D:\xampp\htdocs\dishtavo2\system\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+#4 D:\xampp\htdocs\dishtavo2\system\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('admin', 'username', Array, NULL, 'username')
+#5 D:\xampp\htdocs\dishtavo2\system\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('username', 'username', 'admin', Array, Array)
+#6 D:\xampp\htdocs\dishtavo2\app\Controllers\admin\Login.php(45): CodeIgniter\Validation\Validation->run()
+#7 D:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(942): App\Controllers\admin\Login->validatelogin()
+#8 D:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+#9 D:\xampp\htdocs\dishtavo2\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 D:\xampp\htdocs\dishtavo2\index.php(79): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-12-08 11:09:10 --> Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'dishtavo'
+in SYSTEMPATH\Database\BaseConnection.php on line 428.
+ 1 SYSTEMPATH\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `users`
+WHERE `username` = :username:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('admin', 'username', [...], null, 'username')
+ 5 SYSTEMPATH\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('username', 'username', 'admin', [...], [...])
+ 6 APPPATH\Controllers\admin\Login.php(45): CodeIgniter\Validation\Validation->run()
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->validatelogin()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-08 11:17:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-08 11:18:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-08 11:20:01 --> Undefined variable: error
+in APPPATH\Views\admin\login.php on line 103.
+ 1 APPPATH\Views\admin\login.php(103): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: error', 'D:\\xampp\\htdocs\\dishtavo2\\app\\Views\\admin\\login.php', 103, [])
+ 2 SYSTEMPATH\View\View.php(228): include('D:\\xampp\\htdocs\\dishtavo2\\app\\Views\\admin\\login.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/login', [], true)
+ 5 APPPATH\Controllers\admin\Login.php(21): view('admin/login', [])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-08 11:20:14 --> Undefined variable: error
+in APPPATH\Views\admin\login.php on line 103.
+ 1 APPPATH\Views\admin\login.php(103): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: error', 'D:\\xampp\\htdocs\\dishtavo2\\app\\Views\\admin\\login.php', 103, [])
+ 2 SYSTEMPATH\View\View.php(228): include('D:\\xampp\\htdocs\\dishtavo2\\app\\Views\\admin\\login.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/login', [], true)
+ 5 APPPATH\Controllers\admin\Login.php(21): view('admin/login', [])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-08 11:22:09 --> Undefined variable: error
+in APPPATH\Views\admin\login.php on line 103.
+ 1 APPPATH\Views\admin\login.php(103): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: error', 'D:\\xampp\\htdocs\\dishtavo2\\app\\Views\\admin\\login.php', 103, [])
+ 2 SYSTEMPATH\View\View.php(228): include('D:\\xampp\\htdocs\\dishtavo2\\app\\Views\\admin\\login.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/login', [], true)
+ 5 APPPATH\Controllers\admin\Login.php(21): view('admin/login', [])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-08 11:22:12 --> Undefined variable: error
+in APPPATH\Views\admin\login.php on line 103.
+ 1 APPPATH\Views\admin\login.php(103): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: error', 'D:\\xampp\\htdocs\\dishtavo2\\app\\Views\\admin\\login.php', 103, [])
+ 2 SYSTEMPATH\View\View.php(228): include('D:\\xampp\\htdocs\\dishtavo2\\app\\Views\\admin\\login.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/login', [], true)
+ 5 APPPATH\Controllers\admin\Login.php(21): view('admin/login', [])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\admin\Login->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\admin\Login))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-08 11:22:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-08 11:22:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-08 11:24:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-08 11:25:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-08 11:25:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-08 11:29:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-08 11:29:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-08 11:30:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-08 11:31:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-08 11:32:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-08 11:33:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-08 11:34:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-08 11:36:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-08 12:03:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
