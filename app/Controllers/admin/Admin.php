@@ -1,112 +1,120 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Admin extends CI_Controller {
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+class Admin extends CI_Controller
+{
 	// Constructor: load Common Models and Libraries
-	public function __construct() {
-		parent:: __construct();
+	public function __construct()
+	{
+		parent::__construct();
 		$this->load->model('user_model');
 	}
 	// Default Function: Check Session & Redirect
-	public function index($argData=array()){
+	public function index($argData = array())
+	{
 		$session_id = $this->session->userdata('SESSION_ID');
-		if($session_id==""){
-			redirect(base_url().'index.php/admin/login','refresh');
-		}else{
-			redirect(base_url().'index.php/dashboard','refresh');
-			
+		if ($session_id == "") {
+			redirect(base_url() . 'index.php/admin/login', 'refresh');
+		} else {
+			redirect(base_url() . 'index.php/dashboard', 'refresh');
 		}
 	}
 	// Display Login Form
-	public function login(){
+	public function login()
+	{
 		$session_id = $this->session->userdata('SESSION_ID');
-		if($session_id==""){
+		if ($session_id == "") {
 			$DATA['ERR']	= $this->session->userdata('ERR');
 			$HTITLE['HTITLE']	= "Please log in to access the Application";
 			$DATA['HTITLE'] = $HTITLE;
-			$sessArr = array('ERR' => '');$this->session->set_userdata($sessArr);
-			$this->load->view('login',$DATA);
-		}else{
-			redirect(base_url().'index.php/dashboard','refresh');
+			$sessArr = array('ERR' => '');
+			$this->session->set_userdata($sessArr);
+			$this->load->view('login', $DATA);
+		} else {
+			redirect(base_url() . 'index.php/dashboard', 'refresh');
 		}
 	}
-	
-	public function profile(){
-		
+
+	public function profile()
+	{
+
 		$session_id = $this->session->userdata('SESSION_ID');
-		if($session_id==""){
-			redirect(base_url().'index.php/admin/login','refresh');
-		}else{
-			
+		if ($session_id == "") {
+			redirect(base_url() . 'index.php/admin/login', 'refresh');
+		} else {
+
 			$HTITLE['HTITLE']	= "Profile";
 			$DATA['HTITLE'] = $HTITLE;
-			
-			
 		}
 
-		$viewArr['viewPage']= 'user/profile';
-			$viewArr['headerPage'] = "header";
-			$viewArr['menu'] = "profile";
-			$viewArr['submenu'] = "";
+		$viewArr['viewPage'] = 'user/profile';
+		$viewArr['headerPage'] = "header";
+		$viewArr['menu'] = "profile";
+		$viewArr['submenu'] = "";
 
-			$this->load->view('layout',$viewArr);
+		$this->load->view('layout', $viewArr);
 	}
-	
+
 	// Logout and redirect
-	public function out(){
-		$sessArr = array('SESSION_ID' => '','SESSION_NAME' => '','ERR'=>'');$this->session->set_userdata($sessArr);
-		redirect(base_url().'index.php/admin/login','refresh');
+	public function out()
+	{
+		$sessArr = array('SESSION_ID' => '', 'SESSION_NAME' => '', 'ERR' => '');
+		$this->session->set_userdata($sessArr);
+		redirect(base_url() . 'index.php/admin/login', 'refresh');
 	}
 	// Validate Login Form
-	public function validatelogin(){
+	public function validatelogin()
+	{
 		$this->form_validation->set_rules('UNM', 'Username', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('PWD', 'Pasword', 'trim|required|xss_clean');
-		if ($this->form_validation->run() == FALSE){
-			$sessArr = array('ERR' => 'Invalid Login');$this->session->set_userdata($sessArr);
-			redirect(base_url().'index.php/admin/login','refresh');
-		}else{
-			$UNM=$this->input->post('UNM');
-			$PWD=md5($this->input->post('PWD'));
-			$RES=$this->user_model->validUser($UNM,$PWD);
-			if($RES['user_id']==0){
-				$sessArr = array('ERR' => 'Invalid Login');$this->session->set_userdata($sessArr);
-				redirect(base_url().'index.php/admin/login','refresh');
-			}else{
+		if ($this->form_validation->run() == FALSE) {
+			$sessArr = array('ERR' => 'Invalid Login');
+			$this->session->set_userdata($sessArr);
+			redirect(base_url() . 'index.php/admin/login', 'refresh');
+		} else {
+			$UNM = $this->input->post('UNM');
+			$PWD = md5($this->input->post('PWD'));
+			$RES = $this->user_model->validUser($UNM, $PWD);
+			if ($RES['user_id'] == 0) {
+				$sessArr = array('ERR' => 'Invalid Login');
+				$this->session->set_userdata($sessArr);
+				redirect(base_url() . 'index.php/admin/login', 'refresh');
+			} else {
 				$ID = $RES['user_id'];
 				$name = $RES['user_name'];
 				$email = $RES['user_email'];
 				$profilePic = $RES['image'];
-				$sessArr = array('SESSION_ID' => $ID,'SESSION_NAME' => $name,'email' => $email,'profilePic' => $profilePic);
+				$sessArr = array('SESSION_ID' => $ID, 'SESSION_NAME' => $name, 'email' => $email, 'profilePic' => $profilePic);
 				$this->session->set_userdata($sessArr);
-				redirect(base_url().'index.php/dashboard','refresh');
+				redirect(base_url() . 'index.php/dashboard', 'refresh');
 			}
 		}
 	}
 
-	public function uploadImage(){
+	public function uploadImage()
+	{
 
 		$session_id = $this->session->userdata('SESSION_ID');
 
-		if(is_array($_FILES)) {
+		if (is_array($_FILES)) {
 			$filename = $_FILES['userImage']['name'];
-			if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
+			if (is_uploaded_file($_FILES['userImage']['tmp_name'])) {
 				$sourcePath = $_FILES['userImage']['tmp_name'];
-				$targetPath = $this->config->item('profileDirPath').'/'.$_FILES['userImage']['name'];
-				$imagePath = $this->config->item('profileWebPath').'/'.$_FILES['userImage']['name'];
-				if(move_uploaded_file($sourcePath,$targetPath)) {
-					
+				$targetPath = $this->config->item('profileDirPath') . '/' . $_FILES['userImage']['name'];
+				$imagePath = $this->config->item('profileWebPath') . '/' . $_FILES['userImage']['name'];
+				if (move_uploaded_file($sourcePath, $targetPath)) {
+
 					$this->user_model->updateProfileImage($session_id, $filename);
 
-					print '<img class="image-preview" src="'.$imagePath.'" class="upload-preview" />';
-				
+					print '<img class="image-preview" src="' . $imagePath . '" class="upload-preview" />';
 				}
 			}
 		}
 
 		//save image info
-		
-		
+
+
 
 	}
-	
+
 	/*function listing($argData=array())
 	{
 			//$DATA['HTITLE'] = $HTITLE;

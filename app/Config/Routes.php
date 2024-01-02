@@ -39,6 +39,14 @@ $routes->get('/dish2o_admin/programmes/addnew', 'admin\Programme::addnew');
 $routes->post('/dish2o_admin/programmes/save', 'admin\Programme::save');
 $routes->post('/dish2o_admin/programmes/edit', 'admin\Programme::edit');
 $routes->post('/dish2o_admin/programmes/update', 'admin\Programme::update');
+
+//Manage Faculty
+$routes->get('/dish2o_admin/faculties', 'admin\Faculty::index');
+$routes->get('/dish2o_admin/faculties/addnew', 'admin\Faculty::addnew');
+$routes->post('/dish2o_admin/faculties/save', 'admin\Faculty::save');
+$routes->post('/dish2o_admin/faculties/facultypersonaldetails', 'admin\Faculty::fetchfacultypersonalDetails');
+$routes->post('/dish2o_admin/faculties/update', 'admin\Faculty::update');
+$routes->post('/dish2o_admin/faculties/deleteProfile', 'admin\Faculty::deleteProfile');
 /*
 $routes->post('/dish2o_admin/colleges/edit', 'admin\College::edit');
 $routes->post('/dish2o_admin/colleges/update', 'admin\College::update');*/

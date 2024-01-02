@@ -33,6 +33,9 @@
   <!-- Custom Theme Style -->
   <link href="<?= base_url('public/build/css/custom.min.css') ?>" rel="stylesheet">
 
+  <!-- PNotify -->
+<link href="<?= base_url('public/vendors/pnotify/dist/pnotify.css') ?>" rel="stylesheet">
+
   <!-- data table -->
   <link href="cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   <link href="<?= base_url('public/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') ?>" rel="stylesheet">
@@ -175,6 +178,10 @@
 
   <!-- Parsley Paresh: here form validations are implemented we need to check -->
 <script src="<?= base_url('public/vendors/') ?>parsleyjs/dist/parsley.min.js"></script>
+
+
+<!-- PNotify -->
+  <script src="<?= base_url('public/vendors/pnotify/dist/pnotify.js') ?>"></script>
 
   <!-- Custom Theme Scripts -->
   <script src="<?= base_url('public/build/js/custom.min.js') ?>"></script>

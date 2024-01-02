@@ -61,11 +61,14 @@
                                         <tr>
                                             <td><?php echo $cnt; ?></td>
                                             <td><?php echo $eachProgramme['name']; ?></td>
-                                            <td><?php echo $eachProgramme['type'] == "1" ? "CURRENT": "NEP" ?></td>
+                                            <td><?php echo $eachProgramme['type'] == "1" ? "CURRENT" : "NEP" ?></td>
                                             <td><?php echo $eachProgramme['position']; ?></td>
                                             <td><?php echo $eachProgramme['created_at']; ?></td>
                                             <td>
-                                                <form method="post" action="<?= base_url('dish2o_admin/programmes/edit') ?>"> <input type="hidden" name="programme_id" id="programme_id" value="<?php echo $eachProgramme['id']; ?>" /><button class="btn btn-success" type="submit">Edit</button></form>
+                                                <form method="post" action="<?= base_url('dish2o_admin/programmes/edit') ?>">
+                                                    <input type="hidden" name="programme_id" id="programme_id" value="<?php echo $eachProgramme['id']; ?>" />
+                                                    <button class="btn btn-success" type="submit">Edit</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     <?php

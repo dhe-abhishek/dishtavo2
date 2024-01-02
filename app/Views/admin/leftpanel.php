@@ -183,6 +183,12 @@
                     <li><a href="<?= base_url('dish2o_admin/programmes/addnew') ?>">Add New</a></li>
                 </ul>
             </li>
+            <li><a><i class="fa fa-edit"></i> Manage Faculty <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="<?= base_url('dish2o_admin/faculties') ?>">List</a></li>
+                    <li><a href="<?= base_url('dish2o_admin/faculties/addnew') ?>">Add New</a></li>
+                </ul>
+            </li>
             <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="form.html">General Form</a></li>
