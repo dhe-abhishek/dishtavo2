@@ -47,6 +47,16 @@ $routes->post('/dish2o_admin/faculties/save', 'admin\Faculty::save');
 $routes->post('/dish2o_admin/faculties/facultypersonaldetails', 'admin\Faculty::fetchfacultypersonalDetails');
 $routes->post('/dish2o_admin/faculties/update', 'admin\Faculty::update');
 $routes->post('/dish2o_admin/faculties/deleteProfile', 'admin\Faculty::deleteProfile');
+
+//Manage Video
+$routes->get('/dish2o_admin/videos', 'admin\Video::index');
+$routes->get('/dish2o_admin/videos/addnew', 'admin\Video::addnew');
+$routes->post('/dish2o_admin/videos/save', 'admin\Video::save');
+$routes->post('/dish2o_admin/videos/edit', 'admin\Video::edit');
+$routes->post('/dish2o_admin/videos/videodetails', 'admin\Video::fetchvideoDetails');
+$routes->post('/dish2o_admin/videos/update', 'admin\Video::update');
+$routes->post('/dish2o_admin/videos/deleteVideo', 'admin\Video::deleteVideo');
+
 /*
 $routes->post('/dish2o_admin/colleges/edit', 'admin\College::edit');
 $routes->post('/dish2o_admin/colleges/update', 'admin\College::update');*/
