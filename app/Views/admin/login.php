@@ -61,7 +61,7 @@ return false;
 </div>
 
 </body>
-</html>*/?>
+</html>*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -96,14 +96,17 @@ return false;
     <div class="login_wrapper">
       <div class="animate form login_form">
         <section class="login_content">
-
-
+          <?php
+          $session = session();
+          if ($session->has('errorMessage')) {
+            echo '<div class="alert alert-error">' . $session->getFlashdata('errorMessage') . '</div>';
+          }
+          ?>
           <form method="post" action="<?= base_url('dish2o_admin/validatelogin') ?>">
             <h1>Admin Login</h1>
-            <span><?php echo isset($error)? $error:''; ?></span>
+            <span><?php echo isset($error) ? $error : ''; ?></span>
             <div>
-              <input type="text" name="username" class="form-control" placeholder="Username" required=""
-                value="<?= set_value('username') ?>" />
+              <input type="text" name="username" class="form-control" placeholder="Username" required="" value="<?= set_value('username') ?>" />
               <?= isset($validation) ? $validation->showError('username') : '' ?>
             </div>
             <div>

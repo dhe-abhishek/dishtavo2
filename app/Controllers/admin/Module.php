@@ -3,80 +3,56 @@
 
 namespace App\Controllers\admin;
 
-use App\Models\FacultyModel;
+use App\Models\ModuleModel;
 use App\Models\CollegeModel;
 use App\Models\DesignationModel;
 use App\Models\UserModel;
 use App\Models\UserRoleModel;
 use App\Controllers\BaseController;
 
-class Faculty extends BaseController
+class Module extends BaseController
 {
-    var $sessionUser = array();
-    var $roleMenu = array();
-    var $session = array();
-
-    public function __construct()
-    {
-        // Your constructor logic here
-        // This will be executed every time an instance of the controller is created
-        $this->session = \Config\Services::session();
-
-        /* if (!$this->session->has('user')) {
-           $url = base_url('dish2o_admin/login');
-                header("location:" . $url);
-                exit;
-        } 
-
-        $this->sessionUser = $this->session->get('user');
-
-        $menu = new MenuModel();
-        $roleId =1;//user logged in users role ID
-        $this->roleMenu = $menu->getMenuForRole($roleId);*/
-    }
-
-
-    public function index(): string
+     public function index(): string
     {
         $dataArr = array();
-        $dataArr['pageTitle'] = "Manage Faculty";
-        $dataArr['menu'] = "Faculty";
+        $dataArr['pageTitle'] = "Manage Module";
+        $dataArr['menu'] = "Module";
         $dataArr['subMenu'] = "List";
-        $dataArr['viewPage'] = 'admin/faculty/list';
+        $dataArr['viewPage'] = 'admin/module/list';
 
         $sessionData = session()->get('user');
 
-        $facultyModel = new FacultyModel();
-        $dataArr['allFacultyDetails'] = $facultyModel->getAllFacultyDetails();
+        $moduleModel = new ModuleModel();
+        //$dataArr['allFacultyDetails'] = $facultyModel->getAllFacultyDetails();
 
         //print "<pre>";
         //print_r($dataArr);
         //die();
         return view('admin/layout', $dataArr);
-    }
+    } 
 
-    public function addnew(): string
+     public function addnew(): string
     {
         $dataArr = array();
-        $dataArr['pageTitle'] = "Manage Faculty";
-        $dataArr['menu'] = "Faculty";
+        $dataArr['pageTitle'] = "Manage Module";
+        $dataArr['menu'] = "Module";
         $dataArr['subMenu'] = "add";
-        $dataArr['viewPage'] = 'admin/faculty/add';
+        $dataArr['viewPage'] = 'admin/module/add';
 
         $sessionData = session()->get('user');
 
-        $collegeModel = new CollegeModel();
-        $dataArr['colleges'] = $collegeModel->findAll();
+        $moduleModel = new ModuleModel();
+        $dataArr['modules'] = $moduleModel->findAll();
 
         $designationModel = new DesignationModel();
         $dataArr['designations'] = $designationModel->findAll();
 
         return view('admin/layout', $dataArr);
-    }
+    } 
 
 
 
-    public function save()
+   /*  public function save()
     {
 
         $dataArr = array();
@@ -173,9 +149,9 @@ class Faculty extends BaseController
         }
 
         return view('admin/layout', $dataArr);
-    }
+    } */
 
-    public function fetchfacultypersonalDetails()
+   /*  public function fetchfacultypersonalDetails()
     {
         $user_id = $this->request->getPost('user_id');
         $userModel = new UserModel();
@@ -184,8 +160,8 @@ class Faculty extends BaseController
         //die();
         echo json_encode($data); // Return a JSON response
     }
-
-    public function update()
+ */
+    /* public function update()
     {
 
         $userModel = new UserModel();
@@ -207,9 +183,9 @@ class Faculty extends BaseController
         //print $user_id;
         //die();
 
-    }
+    } */
 
-    public function deleteProfile()
+/*     public function deleteProfile()
     {
         $userModel = new UserModel();
     
@@ -226,7 +202,7 @@ class Faculty extends BaseController
         }
 
         echo json_encode($dataArr); // Return a JSON response
-    }
+    } */
     /*
     public function edit(): string
     {
