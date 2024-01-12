@@ -12,6 +12,8 @@ use App\Models\FacultyModel;
 use App\Models\ModuleModel;
 use App\Models\ProgrammeCourseUnitModuleModel;
 use App\Models\ModuleDocLogModel;
+use App\Models\ProgrammeCourseUnitModel;
+use App\Models\UEALogModel;
 
 use App\Controllers\BaseController;
 
@@ -190,7 +192,7 @@ class ProgrammeCourse extends BaseController
         //print $lastQuery;
         //print_r($dataArr['quadData']);
         //die;
-        //print_r($sessionData);
+       
         return view('admin/layout', $dataArr);
         //return view('welcome_message');
     }
@@ -270,7 +272,7 @@ class ProgrammeCourse extends BaseController
                     //$ext = $file->getClientExtension();
 
                     // Fetch uploadURL from app.php file
-                    $uploadURL = config(App::class)->uploadPath;
+                    $uploadURL = config(App::class)->uploadquadDataPath;
                     $quadDataURL = config(App::class)->quadDataURL;
                     // Desired folder structure
                     $target_URL = $uploadURL . "/Mod_" . $module_id . "/";
@@ -334,6 +336,180 @@ class ProgrammeCourse extends BaseController
             ->setStatusCode(200)
             ->setBody($binary);
     }
+
+
+    /*
+     * Function to retrieve UEA
+     * Author: Abhishek G.
+     */
+    public function fetchuea(): string
+    {
+        $dataArr = array();
+        $dataArr['pageTitle'] = "Manage UEA";
+        $dataArr['menu'] = "UEA";
+        $dataArr['subMenu'] = "List";
+        $dataArr['viewPage'] = 'admin/Programmecourse/uea';
+
+        $sessionData = session()->get('user');
+
+        $programmeCourseModel = new ProgrammeCourseModel();
+ 
+        $programmecourse_id = $this->request->getGet('programmecourse_id');
+       
+        $dataArr['courseDetails'] = $programmeCourseModel->getProgramCourseDetails($programmecourse_id);
+        $dataArr['allUnits'] = $programmeCourseModel->fetchProgrammeCourseUnits($programmecourse_id);
+        return view('admin/layout', $dataArr);
+    }
+
+
+
+
+    /* 
+    Function to upload Unit End Assessment
+    Abhishek G
+    */
+    public function uploadUEA()
+    {
+        $dataArr = array();
+        $ueaData = array();
+
+        $config = config('App');
+        $sessionData = session()->get('user');
+
+        $programmecourseunitModel = new ProgrammeCourseUnitModel();
+      
+
+        $file = $this->request->getFile('filename');
+        $unit_id = $this->request->getPost('unit_id');
+        $programme_course_unit_id = $this->request->getPost('programme_course_unit_id');
+       
+
+
+        //print "<pre>";
+        //print_r($file);
+        //print($unit_id);
+        //print($programme_course_unit_id);
+        //die;
+
+        // Validation
+
+        $input = $this->validate([
+            'filename' => 'uploaded[filename]|max_size[filename,1024]|ext_in[filename,docx,pdf],'
+        ]);
+
+        if (!$input) { // Not valid
+            $dataArr['errorMsg'] = "Upload the file";
+            echo json_encode($dataArr);
+        } else { // Valid
+
+            if ($file = $this->request->getFile('filename')) {
+                if ($file->isValid() && !$file->hasMoved()) {
+                    // Get file name and extension
+                    $name =  'PCU_'.$programme_course_unit_id."." . $file->getClientExtension();  //Give random name to file
+                    $ueaData['filename'] = $name;
+                    //$ext = $file->getClientExtension();
+
+                    // Fetch uploadURL from app.php file
+                    $uploadURL = config(App::class)->uploadueaDataPath;
+                    $quadDataURL = config(App::class)->quadDataURL;
+                    // Desired folder structure
+                    $target_URL = $uploadURL;
+                    if (!file_exists($target_URL)) { // Use file_exists() for general checks
+                        mkdir($target_URL, 0777, true);
+                    } else {
+                        // Folder already exists, handle accordingly (e.g., notify user or proceed with other actions)
+                    }
+
+                    // File path to display preview
+
+                    $file->move($target_URL, $name);
+                    $filepath = $target_URL."/" . $name;
+                    chmod($filepath, 0777);
+                    //print $filepath;
+
+                  
+                    $dataArr['uea'] = $name;
+                    $dataArr['uea_uploaded_by'] = 1;
+                    $assignUEAToUnit =  $programmecourseunitModel->update($programme_course_unit_id, $dataArr);
+                    
+                  
+                    if ($assignUEAToUnit) {
+                        $dataArr['successMsg'] = "Uploaded Successfully!";
+                        //$this->response->setHeader('Content-Type', get_mime_by_extension($name));
+                        //$dataArr['showfile'] = $this->response->download($filepath, $name);
+                        $dataArr['file'] =$name;
+              
+                    } else {
+                        
+                        $dataArr['errorMsg'] = "File not uploaded.";
+                    }
+                }
+            }
+        }
+
+        echo json_encode($dataArr);
+    }
+
+    public function showUEAFile()
+    {
+        helper("filesystem");
+        $programme_course_unit_id = $this->request->getGet('programme_course_unit_id');
+        $filename = $this->request->getGet('filename');
+       
+        $path = WRITEPATH . 'uploads/ueaData/';
+        $fullpath = $path . $filename;
+        $file = new \CodeIgniter\Files\File($fullpath, true);
+        $binary = readfile($fullpath);
+        return $this->response
+            ->setHeader('Content-Type', $file->getMimeType())
+            ->setHeader('Content-disposition', 'inline; filename="' . $file->getBasename() . '"')
+            ->setStatusCode(200)
+            ->setBody($binary);
+    }
+
+
+
+
+    public function deleteUEA(){
+
+        helper('filesystem');
+        $dataArr = array();
+        $ueaArr=array();
+        $pcuArr=array();
+        $programmecourseunitModel = new ProgrammeCourseUnitModel();
+        $uealogModel = new UEALogModel();
+
+    
+        $programme_course_unit_id = $this->request->getPost('programme_course_unit_id');
+
+
+        $ueaArr['programme_course_unit_id']=$programme_course_unit_id;
+        $ueaArr['action']='Deleted';
+        $ueaArr['user_id']=1;
+
+        $pcuArr['uea']='';
+        $pcuArr['uea_uploaded_by']=0;
+
+        $deleteURL = config(App::class)->uploadueaDataPath;
+        $file=$deleteURL.'/'.'PCU_'.$programme_course_unit_id.'.pdf';
+
+
+        $ueaLogUpdated =  $uealogModel->save($ueaArr);
+        $ueaDeleted =  $programmecourseunitModel->update($programme_course_unit_id,$pcuArr);
+        unlink($file);
+
+        if ($ueaDeleted && $ueaLogUpdated) {
+            $dataArr['successMsg'] = "UEA deleted Successfully!";
+            
+        } else {
+            $dataArr['errorsMsg'] = "Cannot delete UEA!";
+           
+        }
+
+        echo json_encode($dataArr); // Return a JSON response
+    }
+
+
 
 
    // <a href='" . $quadDataURL . "/Mod_" . $module_id . "/" . $file->getName() . "' target='_blank'>Transcript</a>

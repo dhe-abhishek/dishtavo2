@@ -17,7 +17,8 @@ class App extends BaseConfig
      *    http://example.com/
      */
     public string $baseURL = 'http://localhost/dishtavo2/';
-    public string $uploadPath='D:/xampp/htdocs/dishtavo2/writable/uploads/quadData';
+    public string $uploadquadDataPath='D:/xampp/htdocs/dishtavo2/writable/uploads/quadData';
+    public string $uploadueaDataPath='D:/xampp/htdocs/dishtavo2/writable/uploads/ueaData';
     public string $quadDataURL='http://localhost/dishtavo2/writable/uploads/quadData';
 
     /**

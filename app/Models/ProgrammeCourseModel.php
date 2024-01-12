@@ -243,4 +243,19 @@ class ProgrammeCourseModel extends Model
     }
 
 
+    public function fetchProgrammeCourseUnits($programCourseId)
+    {
+        $query = $this->db->table('dsh2_programme_course_unit AS pcu')
+            ->select('u.id, pcu.position,u.name,pcu.id as programme_course_unit_id,pcu.uea_uploaded_by,pcu.uea,pcu.programme_course_id,pcu.unit_id')
+            ->join('dsh2_unit AS u', 'u.id = pcu.unit_id', 'inner')
+            ->where('pcu.programme_course_id', $programCourseId)
+            ->orderby('pcu.position', 'ASC')
+            ->get();
+
+        $allUnits = $query->getResultArray();
+        //print "<pre>";
+        //print_r($allUnits);
+        //die;
+        return $allUnits;
+    }
 }

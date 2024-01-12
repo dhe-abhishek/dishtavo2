@@ -94,6 +94,11 @@ $routes->post('/dish2o_admin/Programmecourse/assignfacultytomodule', 'admin\Prog
 $routes->post('/dish2o_admin/Programmecourse/uploadquaddata', 'admin\ProgrammeCourse::uploadQuadData');
 $routes->get('/dish2o_admin/Programmecourse/showquadfile', 'admin\ProgrammeCourse::showQuadFile');
 
+//Manage UEA
+$routes->get('/dish2o_admin/Programmecourse/uea', 'admin\ProgrammeCourse::fetchuea');
+$routes->post('/dish2o_admin/Programmecourse/uploaduea', 'admin\ProgrammeCourse::uploadUEA');
+$routes->get('/dish2o_admin/Programmecourse/showueafile', 'admin\ProgrammeCourse::showUEAFile');
+$routes->post('/dish2o_admin/Programmecourse/deleteuea', 'admin\ProgrammeCourse::deleteUEA');
 
 /*
 $routes->post('/dish2o_admin/colleges/edit', 'admin\College::edit');
