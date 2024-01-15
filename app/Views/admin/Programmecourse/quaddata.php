@@ -143,13 +143,16 @@
                                     <tbody>
                                       <tr id="modulerow_<?php echo $eachModule['id'] ?>">
                                         <td><?php echo $moduleCount; ?></td>
-                                        <td>
+                                        <td id="quad<?php echo $eachModule['umid'] ?>">
                                           <?php
                                           if (isset($eachModule['user_id']) && $eachModule['user_id'] != 0) {
                                             echo $eachModule['salutation'] . " " . $eachModule['firstname'] . " " . $eachModule['lastname'];
+                                          ?>
+                                            <button class='btn btn-danger' onclick="detachfacultymodule(<?php echo $eachModule['umid'] ?>,<?php echo $eachModule['id'] ?>)"><i class='fa fa-trash'></i></button>
+                                          <?php
                                           } else {
                                           ?>
-                                            <button class="btn btn-success facultymodal" data-toggle="modal" data-target=".addFaculty" data-moduleid="<?php echo $eachModule['id']; ?>"><i class="fa fa-plus"></i></button>
+                                            <button class="btn btn-success facultymodal" data-toggle="modal" data-target=".addFaculty" data-moduleid="<?php echo $eachModule['id']; ?>" data-pcumid="<?php echo $eachModule['umid']; ?>"><i class="fa fa-plus"></i></button>
                                           <?php
                                           }
                                           ?>
@@ -303,8 +306,8 @@
                         </div>
                       </div>
 
-                      <input type="text" id="moduleid" name="moduleid" value="">
-
+                      <input type="text" id="moduleid" name="moduleid">
+                      <input type="text" id="pcumid" name="pcumid">
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -382,15 +385,19 @@
 <script>
   $(document).ready(function() {
     $(".facultymodal").click(function() {
+      alert($(this).data('moduleid') + '' + $(this).data('pcumid'));
       $("#moduleid").val($(this).data('moduleid'));
+      $("#pcumid").val($(this).data('pcumid'));
       //var formData = new FormData(this);
     });
 
     $("#assignfacultytomodule").submit(function(e) {
+
       e.preventDefault(); // Prevent default form submission
       var formData = new FormData();
       formData.append('user_id', $("#faculty_id").val());
       formData.append('module_id', $("#moduleid").val());
+      formData.append('programme_course_unit_module_id', $("#pcumid").val());
       $.ajax({
         url: basePath + "/Programmecourse/assignfacultytomodule",
         type: "POST",
@@ -401,6 +408,11 @@
           // Handle successful response
           console.log(response);
           var parsedResponse = JSON.parse(response);
+          var moduleid = $("#moduleid").val();
+          var programme_course_unit_module_id = $("#pcumid").val();
+          var user = parsedResponse.user.salutation + " " + parsedResponse.user.firstname + " " + parsedResponse.user.lastname;
+          var button = '<br>' + '<button class="btn btn-danger" onclick="detachfacultymodule(' + programme_course_unit_module_id + ',' + moduleid + ')"><i class="fa fa-trash"></i></button>';
+          $('#quad' + $("#pcumid").val()).html(user + button)
           new PNotify({
             title: 'success',
             text: parsedResponse.successMsg,
@@ -408,7 +420,9 @@
             styling: 'bootstrap3'
           });
           $('.addFaculty').modal('hide');
-          window.location = window.location;
+          $("#moduleid").val('');
+          $("#pcumid").val('');
+          //window.location = window.location;
         },
         error: function(xhr, status, error) {
           // Handle errors
@@ -476,9 +490,48 @@
       }
     });
 
-
-
-
-
   });
+
+  function detachfacultymodule(programme_course_unit_module_id, module_id) {
+
+    var result = confirm("Deatch Faculty from Module, , Are you sure you want to proceed?");
+    if (result) {
+      var fd = new FormData();
+      fd.append('programme_course_unit_module_id', programme_course_unit_module_id);
+      $.ajax({
+        url: basePath + "/Programmecourse/detachfacultytomodule",
+        type: "POST",
+        data: fd,
+        contentType: false, // Important for FormData
+        processData: false, // Important for FormData
+        success: function(response) {
+          // Handle successful response
+          console.log(response);
+          var parsedResponse = JSON.parse(response);
+          var button = '<button class="btn btn-success facultymodal" data-toggle="modal" data-target=".addFaculty" data-moduleid="' + module_id + '" data-pcumid="' + programme_course_unit_module_id + '"><i class="fa fa-plus"></i></button>';
+          //alert(button);
+          $("#moduleid").val(module_id);
+          $("#pcumid").val(programme_course_unit_module_id);
+          $('#quad' + programme_course_unit_module_id).html(button)
+          new PNotify({
+            title: 'success',
+            text: parsedResponse.successMsg,
+            type: 'success',
+            styling: 'bootstrap3'
+          });
+          //window.location = window.location;
+        },
+        error: function(xhr, status, error) {
+          // Handle errors
+          console.error(error);
+          new PNotify({
+            title: 'Error',
+            text: parsedResponse.errorMsg,
+            type: 'error',
+            styling: 'bootstrap3'
+          });
+        }
+      });
+    }
+  }
 </script>

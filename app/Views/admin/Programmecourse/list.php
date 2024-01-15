@@ -89,7 +89,7 @@
                           <input type="hidden" name="programmecourse_id" id="programmecourse_id" value="<?php echo $eachprogramCourse['id']; ?>" />
                           <button class="btn btn-success" type="submit" data-toggle="tooltip" data-placement="top" title="UEA" data-original-title="Tooltip top">U</button>
                         </form>
-                        <form method="post" action="<?= base_url('dish2o_admin/courses/edit') ?>">
+                        <form method="get" action="<?= base_url('dish2o_admin/Programmecourse/vetter') ?>">
                           <input type="hidden" name="programmecourse_id" id="programmecourse_id" value="<?php echo $eachprogramCourse['id']; ?>" />
                           <button class="btn btn-success" type="submit" data-toggle="tooltip" data-placement="top" title="Vetter Remarks" data-original-title="Tooltip top">V</button>
                         </form>

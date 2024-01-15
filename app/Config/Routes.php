@@ -91,6 +91,7 @@ $routes->post('/dish2o_admin/Programmecourse/edit', 'admin\ProgrammeCourse::edit
 $routes->post('/dish2o_admin/Programmecourse/update', 'admin\ProgrammeCourse::update');
 $routes->get('/dish2o_admin/Programmecourse/quaddata', 'admin\ProgrammeCourse::fetchquadData');
 $routes->post('/dish2o_admin/Programmecourse/assignfacultytomodule', 'admin\ProgrammeCourse::assignFacultyToModule');
+$routes->post('/dish2o_admin/Programmecourse/detachfacultytomodule', 'admin\ProgrammeCourse::detachFacultyToModule');
 $routes->post('/dish2o_admin/Programmecourse/uploadquaddata', 'admin\ProgrammeCourse::uploadQuadData');
 $routes->get('/dish2o_admin/Programmecourse/showquadfile', 'admin\ProgrammeCourse::showQuadFile');
 
@@ -99,6 +100,9 @@ $routes->get('/dish2o_admin/Programmecourse/uea', 'admin\ProgrammeCourse::fetchu
 $routes->post('/dish2o_admin/Programmecourse/uploaduea', 'admin\ProgrammeCourse::uploadUEA');
 $routes->get('/dish2o_admin/Programmecourse/showueafile', 'admin\ProgrammeCourse::showUEAFile');
 $routes->post('/dish2o_admin/Programmecourse/deleteuea', 'admin\ProgrammeCourse::deleteUEA');
+
+//Manage Vetter
+$routes->get('/dish2o_admin/Programmecourse/vetter', 'admin\ProgrammeCourse::fetchvetterData');
 
 /*
 $routes->post('/dish2o_admin/colleges/edit', 'admin\College::edit');

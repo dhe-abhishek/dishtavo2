@@ -202,7 +202,7 @@ class ProgrammeCourseModel extends Model
         //  ->select('pc.id, pc.code, pc.semester, c.name, s.name as subject_name')
 
         $query = $this->db->table('dsh2_programme_course AS pc')
-            ->select('u.*,cu.id as prog_course_unit_id, cu.position, cu.id')
+            ->select('u.*,cu.id as prog_course_unit_id, cu.position, cu.id, u.name as unit_name')
             ->join('dsh2_course AS c', 'c.id = pc.course_id', 'inner')
             ->join('dsh2_subject AS s', 's.id = pc.subject_id', 'inner')
             ->join('dsh2_programme_course_unit AS cu', 'cu.programme_course_id = pc.id', 'inner')
@@ -215,10 +215,7 @@ class ProgrammeCourseModel extends Model
 
         $allUnits = $query->getResultArray();
         //print $this->db->getLastQuery();
-        //die;
-        //print "<pre>";
-        //print_r($allUnits);
-        //die;
+
         $outArr = array();
 
         foreach ($allUnits as $eachUnit) {
@@ -235,7 +232,7 @@ class ProgrammeCourseModel extends Model
 
             $outArr[] = $eachUnit;
         }
-
+        //print $this->db->getLastQuery();
         //print "<pre>";
         //print_r($outArr);
         //die;
