@@ -33,9 +33,6 @@
   <!-- Custom Theme Style -->
   <link href="<?= base_url('public/build/css/custom.min.css') ?>" rel="stylesheet">
 
-  <!-- PNotify -->
-<link href="<?= base_url('public/vendors/pnotify/dist/pnotify.css') ?>" rel="stylesheet">
-
   <!-- data table -->
   <link href="cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   <link href="<?= base_url('public/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') ?>" rel="stylesheet">
@@ -44,10 +41,17 @@
   <link href="<?= base_url('public/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') ?>" rel="stylesheet">
   <link href="<?= base_url('public/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') ?>" rel="stylesheet">
 
+  <!-- PNotify -->
+  <link href="<?= base_url('public/vendors/pnotify/dist/pnotify.css') ?>" rel="stylesheet">
+
   <!-- jQuery -->
   <script src="<?= base_url('public/vendors/jquery/dist/jquery.min.js') ?>"></script>
   <!-- Bootstrap -->
   <script src="<?= base_url('public/vendors/bootstrap/dist/js/bootstrap.bundle.min.js') ?>"></script>
+  <!-- PNotify -->
+  <script src="<?= base_url('public/vendors/pnotify/dist/pnotify.js') ?>"></script>
+
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
   <script language="javascript">
     var basePath = "<?php echo base_url('dish2o_admin'); ?>";
   </script>
@@ -72,7 +76,7 @@
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
-              <h2>John Doe</h2>
+              <h2><?php echo $sessionUser['salutation'].' '.$sessionUser['firstname'].' '.$sessionUser['lastname']?></h2>
             </div>
           </div>
           <!-- /menu profile quick info -->
@@ -178,10 +182,6 @@
 
   <!-- Parsley Paresh: here form validations are implemented we need to check -->
 <script src="<?= base_url('public/vendors/') ?>parsleyjs/dist/parsley.min.js"></script>
-
-
-<!-- PNotify -->
-  <script src="<?= base_url('public/vendors/pnotify/dist/pnotify.js') ?>"></script>
 
   <!-- Custom Theme Scripts -->
   <script src="<?= base_url('public/build/js/custom.min.js') ?>"></script>

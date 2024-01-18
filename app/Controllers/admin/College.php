@@ -37,8 +37,8 @@ class College extends BaseController
         $dataArr['menu'] = "College";
         $dataArr['subMenu'] = "List";
         $dataArr['viewPage'] = 'admin/college/list';
-
-        $sessionData = session()->get('user');
+        $dataArr['sessionUser'] =  $this->sessionUser;
+       
 
         $collegeModel = new CollegeModel();
 
@@ -58,8 +58,8 @@ class College extends BaseController
         $dataArr['menu'] = "College";
         $dataArr['subMenu'] = "add";
         $dataArr['viewPage'] = 'admin/college/add';
-
-        $sessionData = session()->get('user');
+        $dataArr['sessionUser'] =  $this->sessionUser;
+       
         //print_r($sessionData);
         return view('admin/layout', $dataArr);
         //return view('welcome_message');
@@ -72,7 +72,7 @@ class College extends BaseController
         $dataArr['menu'] = "College";
         $dataArr['subMenu'] = "";
         $dataArr['successMsg'] = "";
-
+        $dataArr['sessionUser'] =  $this->sessionUser;
         $collegeModel = new CollegeModel();
 
         $userData = array();
@@ -128,8 +128,8 @@ class College extends BaseController
         $dataArr['menu'] = "College";
         $dataArr['subMenu'] = "edit";
         $dataArr['viewPage'] = 'admin/college/edit';
-
-        $sessionData = session()->get('user');
+        $dataArr['sessionUser'] =  $this->sessionUser;
+       
         $collegeId = $this->request->getPost('college_id');
 
         $collegeModel = new CollegeModel();
@@ -148,7 +148,7 @@ class College extends BaseController
         $dataArr['menu'] = "College";
         $dataArr['subMenu'] = "";
         $dataArr['successMsg'] = "";
-
+        $dataArr['sessionUser'] =  $this->sessionUser;
         $collegeModel = new CollegeModel();
 
         $userData = array();

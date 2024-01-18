@@ -4,8 +4,6 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-use App\Models\ProgrammeCourseUnitModuleModel;
-use App\Models\ModuleDocLogModel;
 
 class ProgrammeCourseModel extends Model
 {
@@ -36,7 +34,6 @@ class ProgrammeCourseModel extends Model
      *Function to get template of course program
      * Author: Paresh A.
      */
-
     public function getProgramCourseTemplate($programCourseId)
     {
         //  ->select('pc.id, pc.code, pc.semester, c.name, s.name as subject_name')
@@ -74,10 +71,11 @@ class ProgrammeCourseModel extends Model
 
             foreach ($modules as $eachModule) {
                 $videoquery = $this->db->table('dsh2_module_video AS mv')
-                    ->select('v.*,l.name as language, l.code as language_code, f.firstname, f.lastname, f.email, f.email')
-                    ->select('s.studio_name, r.recording_date, r.recording_status')
-                    ->select('d.firstname as editor_fname,d.lastname as editor_lname, e.remarks as editor_remark, e.status as editor_status')
-                    ->select('m.firstname as vetter_fname,m.lastname as vetter_lname, t.vet_remarks, t.vet_action, t.status as vetting_status')
+                    ->select('v.*,l.name as language, l.code as language_code, f.id as video_coordinator_id, f.firstname, f.lastname, f.email, f.email,v.id as video_id')
+                    ->select('s.studio_name, r.recording_date, r.recording_status, r.id as recording_schedule_id')
+                    ->select('d.firstname as editor_fname,d.lastname as editor_lname, e.remarks as editor_remark, e.status as editor_status, e.id as editing_schedule_id')
+                    ->select('m.firstname as vetter_fname,m.lastname as vetter_lname, t.vet_remarks, t.vet_action, t.status as vetting_status, t.id as vetting_schedule_id')
+                    ->select('vr.content_changes, vr.rec_remarks, vr.other_rec_reason') //
                     ->select('mv.id')
                     ->join('dsh2_video AS v', 'v.id = mv.video_id', 'inner')
                     ->join('dsh2_language AS l', 'l.id = v.language_id', 'inner')
@@ -88,6 +86,7 @@ class ProgrammeCourseModel extends Model
                     ->join('dsh2_user as d', 'd.id = e.user_id', 'left')
                     ->join('dsh2_vetting_schedule as t', 't.video_id = v.id', 'left')
                     ->join('dsh2_user as m', 'm.id = t.user_id', 'left')
+                    ->join('dsh2_vetter_remark as vr', 'vr.vetting_schedule_id = t.id', 'left')   //
                     ->where('mv.unit_module_id', $eachModule['id'])
                     ->get();
                 $videos = $videoquery->getResultArray();
@@ -104,32 +103,64 @@ class ProgrammeCourseModel extends Model
             $outArr[] = $eachUnit;
         }
 
-
+        //print"<pre>";
         //print_r($outArr);
-
+        //die;
         return $outArr;
     } //END getProgramCourseTemplate
 
-
-    public function getVideoSuggestions($search)
+    /*
+     * Function to get program course details
+     * Author: Paresh A.
+     */
+    public function getVideoSuggestions($query, $progCourseUnitModuleId)
     {
-        $query = $this->db->table('dsh2_video')
-            ->select('*')
-            ->like('name', $search)
+        $query = $this->db->escapeLikeString($query);
+
+        $videoquery = $this->db->table('dsh2_video as v')
+            ->select('v.*, l.name as language')
+            ->join('dsh2_language AS l', 'l.id = v.language_id', 'inner')
+            ->like('v.name', $query)
+            ->where('v.language_id NOT IN( SELECT language_id FROM dsh2_video as d INNER JOIN dsh2_module_video as m ON m.video_id =d.id AND m.unit_module_id =' . $progCourseUnitModuleId . ')')
             ->get();
-        return $query->getResultArray();
+
+        // print $this->db->getLastQuery();
+        // die;
+        return $videoquery->getResultArray();
+
+        // Prepare a safe query to prevent SQL injection
+        // 
+
+        // Fetch suggestions from the appropriate table
+        /* $suggestions = $this->db->table('dsh2_video')
+            ->like('name', $query)
+            ->limit(10) // Adjust as needed
+            ->get()
+            ->getResultArray();*/
+
+        //return $suggestions;
+        // Extract suggestion values
+        /* $suggestion_data = [];
+        foreach ($suggestions as $suggestion) {
+            $suggestion_data['name'] = $suggestion['name']; // Replace with the correct field
+        }
+
+        return $suggestion_data;*/
     }
 
-    public function getUnitSuggestions($search)
-    {
+    /*public function getUnitSuggestions($search){
         $query = $this->db->table('dsh2_unit')
             ->select('*')
             ->like('name', $search)
             ->where('is_active', '1')
             ->get();
         return $query->getResultArray();
-    }
+    }*/
 
+    /*
+     * Function to get program course details
+     * Author: Paresh A.
+     */
     public function deleteUnit($unitId)
     {
         $modulesquery = $this->db->table('dsh2_programme_course_unit_module AS um')
@@ -152,6 +183,10 @@ class ProgrammeCourseModel extends Model
         $this->db->table('dsh2_programme_course_unit')->where('id', $unitId)->delete();
     } //END deleteUnit
 
+    /*
+     * Function to get program course details
+     * Author: Paresh A.
+     */
     public function deleteModule($moduleId)
     {
         //delete all videos with this unit module ID
@@ -161,6 +196,10 @@ class ProgrammeCourseModel extends Model
         $this->db->table('dsh2_programme_course_unit_module')->where('id', $moduleId)->delete();
     } //END deleteUnit
 
+    /*
+     * Function to get program course details
+     * Author: Paresh A.
+     */
     public function getNonAddedLanguageVideos($progCourseUnitModuleId)
     {
         $videoquery = $this->db->table('dsh2_video as v')
@@ -172,6 +211,10 @@ class ProgrammeCourseModel extends Model
         //  print_r($videos);
     }
 
+    /*
+     * Function to get program course details
+     * Author: Paresh A.
+     */
     public function getNonAddedLanguages($progCourseUnitModuleId)
     {
         $videoquery = $this->db->table('dsh2_language as l')
@@ -182,6 +225,8 @@ class ProgrammeCourseModel extends Model
         //  print_r($videos);
     }
 
+    //Function to retrieve Programme Courses
+    //Abhishek G
     public function getProgramCourses()
     {
         $query = $this->db->table('dsh2_programme_course AS pc')
@@ -196,7 +241,8 @@ class ProgrammeCourseModel extends Model
         return $result;
     }
 
-    //Function to retrieve 
+    //Function to retrieve Programme Course Quad Data
+    //Abhishek G
     public function getProgramCourseQuaddata($programCourseId)
     {
         //  ->select('pc.id, pc.code, pc.semester, c.name, s.name as subject_name')
@@ -240,6 +286,8 @@ class ProgrammeCourseModel extends Model
     }
 
 
+    //Function to retrieve Programme Couurse Units
+    //Abhishek G
     public function fetchProgrammeCourseUnits($programCourseId)
     {
         $query = $this->db->table('dsh2_programme_course_unit AS pcu')

@@ -17,11 +17,11 @@ class Home extends BaseController
         // This will be executed every time an instance of the controller is created
         $this->session = \Config\Services::session();
 
-        /* if (!$this->session->has('user')) {
+        if (!$this->session->has('user')) {
            $url = base_url('dish2o_admin/login');
                 header("location:" . $url);
                 exit;
-        } */
+        } 
 
         $this->sessionUser = $this->session->get('user');
 

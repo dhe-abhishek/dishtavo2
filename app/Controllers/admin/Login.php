@@ -15,11 +15,11 @@ class Login extends BaseController
         // This will be executed every time an instance of the controller is created
         $this->session = \Config\Services::session();
 
-        if ($this->session->has('user')) {
+       /*  if ($this->session->has('user')) {
            $url = base_url('dish2o_admin/home');
                 header("location:" . $url);
                 exit;
-        }
+        } */
 
     }
     public function index(): string
@@ -44,28 +44,32 @@ class Login extends BaseController
             // Load the Validation library
             $validation = \Config\Services::validation();
 
+            //print("check login");
+            //die;
             // Define validation rules
             $validation->setRules([
                 'username' => 'required|min_length[3]|',
-                'password' => 'required|min_length[6]',
+                'password' => 'required|min_length[3]',
             ]);
-
+            //print($validation->withRequest($this->request)->run());
+       
             // Run the validation
-            if ($validation->withRequest($this->request)->run()) {
+            if ($validation->withRequest($this->request)->run()==1) {
                 // Validation passed, process the login
                 $username = $this->request->getPost('username');
                 $password = $this->request->getPost('password');
-               
+               //print($username."".$password);
+               //die;
                 $user = $userModel->checkAdminUser($username);//$userModel->where('username', $username)->first();
 
-               // print_r($user);
-               // die;
+                //print_r($user);
+                
 
                 if ($user && MD5($password) == $user['password']) {
                     // Authentication successful, store user data in session or take other actions
                     unset($user['password']);
                     session()->set('user', $user);
-
+                    //die;
                     return redirect()->to('dish2o_admin/home'); // Redirect to a dashboard page
                 } else {
                     // Authentication failed
@@ -97,16 +101,5 @@ class Login extends BaseController
         }
     }
 
-    public function logout()
-    {
-        $this->session = \Config\Services::session();
-        $this->session->destroy();
-        $this->session->remove('user');
-
-        $sessionUser = $this->session->get('user');
-        print_r($sessionUser);
-        die;
-
-        return redirect()->to('dish2o_admin/login');
-    }
+    
 }

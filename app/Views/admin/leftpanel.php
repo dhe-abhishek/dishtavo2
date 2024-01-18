@@ -163,7 +163,7 @@
 </div><!--leftmenu-->
 
 </div><!-- leftpanel -->
-*/ ?>
+*/?>
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
         <h3>General</h3>
@@ -175,6 +175,12 @@
                 <ul class="nav child_menu">
                     <li><a href="<?= base_url('dish2o_admin/colleges') ?>">List</a></li>
                     <li><a href="<?= base_url('dish2o_admin/colleges/addnew') ?>">Add New</a></li>
+                </ul>
+            </li>
+            <li><a><i class="fa fa-edit"></i> Manage Blog <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="<?=base_url('dish2o_admin/blog') ?>">List</a></li>
+                    <li><a href="<?=base_url('dish2o_admin/blog/addnew') ?>">Add New</a></li>
                 </ul>
             </li>
             <li><a><i class="fa fa-edit"></i> Manage Programmes <span class="fa fa-chevron-down"></span></a>

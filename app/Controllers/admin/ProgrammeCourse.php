@@ -20,6 +20,29 @@ use App\Controllers\BaseController;
 
 class ProgrammeCourse extends BaseController
 {
+
+    var $sessionUser = array();
+    var $roleMenu = array();
+    var $session = array();
+    
+    public function __construct()
+    {
+        // Your constructor logic here
+        // This will be executed every time an instance of the controller is created
+        $this->session = \Config\Services::session();
+
+        if (!$this->session->has('user')) {
+           $url = base_url('dish2o_admin/login');
+                header("location:" . $url);
+                exit;
+        }
+
+        $this->sessionUser = $this->session->get('user');
+
+       // $menu = new MenuModel();
+       // $roleId =1;//user logged in users role ID
+        //$this->roleMenu = $menu->getMenuForRole($roleId);
+    }
     public function index(): string
     {
         $dataArr = array();
@@ -27,8 +50,7 @@ class ProgrammeCourse extends BaseController
         $dataArr['menu'] = "Course";
         $dataArr['subMenu'] = "List";
         $dataArr['viewPage'] = 'admin/Programmecourse/list';
-
-        $sessionData = session()->get('user');
+        $dataArr['sessionUser'] =  $this->sessionUser;
 
         $programmeCourseModel = new ProgrammeCourseModel();
 
@@ -51,8 +73,9 @@ class ProgrammeCourse extends BaseController
         $dataArr['menu'] = "Course";
         $dataArr['subMenu'] = "Add";
         $dataArr['viewPage'] = 'admin/ProgrammeCourse/add';
+        $dataArr['sessionUser'] =  $this->sessionUser;
 
-        $sessionData = session()->get('user');
+      
         $programmeModel = new ProgrammeModel();
         $dataArr['programmes'] = $programmeModel->orderBy('position', 'asc')->findAll();
 
@@ -79,6 +102,7 @@ class ProgrammeCourse extends BaseController
         $dataArr['menu'] = "Course";
         $dataArr['subMenu'] = "";
         $dataArr['successMsg'] = "";
+        $dataArr['sessionUser'] =  $this->sessionUser;
 
         $programmeCourseModel = new ProgrammeCourseModel();
 
@@ -174,8 +198,8 @@ class ProgrammeCourse extends BaseController
         $dataArr['menu'] = "Quad-Data";
         $dataArr['subMenu'] = "List";
         $dataArr['viewPage'] = 'admin/Programmecourse/quaddata';
+        $dataArr['sessionUser'] =  $this->sessionUser;
 
-        $sessionData = session()->get('user');
 
 
         $programmeCourseModel = new ProgrammeCourseModel();
@@ -266,6 +290,7 @@ class ProgrammeCourse extends BaseController
     */
     public function uploadQuadData()
     {
+        
         $dataArr = array();
         $quadData = array();
 
@@ -391,9 +416,8 @@ class ProgrammeCourse extends BaseController
         $dataArr['menu'] = "UEA";
         $dataArr['subMenu'] = "List";
         $dataArr['viewPage'] = 'admin/Programmecourse/uea';
-
-        $sessionData = session()->get('user');
-
+        $dataArr['sessionUser'] =  $this->sessionUser;
+        
         $programmeCourseModel = new ProgrammeCourseModel();
 
         $programmecourse_id = $this->request->getGet('programmecourse_id');
@@ -572,12 +596,40 @@ class ProgrammeCourse extends BaseController
         $dataArr['menu'] = "Vetter";
         $dataArr['subMenu'] = "List";
         $dataArr['viewPage'] = 'admin/Programmecourse/vetter';
-
-        $sessionData = session()->get('user');
+        $dataArr['sessionUser'] =  $this->sessionUser;
+      
 
 
         $programmeCourseModel = new ProgrammeCourseModel();
-        $facultyModel = new FacultyModel();
+
+        $programmecourse_id = $this->request->getGet('programmecourse_id');
+
+        $dataArr['courseDetails'] = $programmeCourseModel->getProgramCourseDetails($programmecourse_id);
+        $dataArr['template'] = $programmeCourseModel->getProgramCourseTemplate($programmecourse_id);
+
+        return view('admin/layout', $dataArr);
+    }
+
+
+
+     /* 
+    Function to Upload Vetter Content Type
+    Abhishek G
+    */
+    public function vetterUploadContentType()
+    {
+
+        $dataArr = array();
+        $dataArr['pageTitle'] = "Vetter Remarks";
+        $dataArr['menu'] = "Vetter";
+        $dataArr['subMenu'] = "List";
+        $dataArr['viewPage'] = 'admin/Programmecourse/vetter';
+        $dataArr['sessionUser'] =  $this->sessionUser;
+      
+
+
+        $programmeCourseModel = new ProgrammeCourseModel();
+
         $programmecourse_id = $this->request->getGet('programmecourse_id');
 
         $dataArr['courseDetails'] = $programmeCourseModel->getProgramCourseDetails($programmecourse_id);

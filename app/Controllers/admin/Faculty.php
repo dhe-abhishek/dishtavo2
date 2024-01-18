@@ -3,6 +3,7 @@
 
 namespace App\Controllers\admin;
 
+use Config\App;
 use App\Models\FacultyModel;
 use App\Models\CollegeModel;
 use App\Models\DesignationModel;
@@ -12,6 +13,7 @@ use App\Controllers\BaseController;
 
 class Faculty extends BaseController
 {
+
     var $sessionUser = array();
     var $roleMenu = array();
     var $session = array();
@@ -22,18 +24,19 @@ class Faculty extends BaseController
         // This will be executed every time an instance of the controller is created
         $this->session = \Config\Services::session();
 
-        /* if (!$this->session->has('user')) {
-           $url = base_url('dish2o_admin/login');
-                header("location:" . $url);
-                exit;
-        } 
+        if (!$this->session->has('user')) {
+            $url = base_url('dish2o_admin/login');
+            header("location:" . $url);
+            exit;
+        }
 
         $this->sessionUser = $this->session->get('user');
 
-        $menu = new MenuModel();
-        $roleId =1;//user logged in users role ID
-        $this->roleMenu = $menu->getMenuForRole($roleId);*/
+        // $menu = new MenuModel();
+        // $roleId =1;//user logged in users role ID
+        //$this->roleMenu = $menu->getMenuForRole($roleId);
     }
+
 
 
     public function index(): string
@@ -43,8 +46,9 @@ class Faculty extends BaseController
         $dataArr['menu'] = "Faculty";
         $dataArr['subMenu'] = "List";
         $dataArr['viewPage'] = 'admin/faculty/list';
+        $dataArr['sessionUser'] =  $this->sessionUser;
 
-        $sessionData = session()->get('user');
+
 
         $facultyModel = new FacultyModel();
         $dataArr['allFacultyDetails'] = $facultyModel->getAllFacultyDetails();
@@ -62,8 +66,9 @@ class Faculty extends BaseController
         $dataArr['menu'] = "Faculty";
         $dataArr['subMenu'] = "add";
         $dataArr['viewPage'] = 'admin/faculty/add';
+        $dataArr['sessionUser'] =  $this->sessionUser;
 
-        $sessionData = session()->get('user');
+
 
         $collegeModel = new CollegeModel();
         $dataArr['colleges'] = $collegeModel->findAll();
@@ -84,6 +89,8 @@ class Faculty extends BaseController
         $dataArr['menu'] = "Faculty";
         $dataArr['subMenu'] = "";
         $dataArr['successMsg'] = "";
+        $dataArr['sessionUser'] =  $this->sessionUser;
+
 
         $userModel = new UserModel();
         $facultyModel = new FacultyModel();
@@ -190,18 +197,115 @@ class Faculty extends BaseController
 
         $userModel = new UserModel();
         $userData = array();
+        $config = config('App');
         $user_id = $this->request->getPost('user_id');
         $userData['salutation'] = $this->request->getPost('salutation');
         $userData['firstname'] = $this->request->getPost('firstname');
         $userData['lastname'] = $this->request->getPost('lastname');
         $userData['mobile'] = $this->request->getPost('mobile');
         $userData['email'] = $this->request->getPost('email');
-        $profileUpdated =  $userModel->update($user_id,$userData);
-        if ($profileUpdated) {
-            $message['successMsg'] = "Profile updated successfully.";
+        $file = $this->request->getFile('photo');
+
+        // Validation
+        $input = $this->validate([
+            'photo' => 'uploaded[photo]|max_size[photo,1024]|ext_in[photo,jpeg,jpg,png],'
+        ]);
+        if (!$input) { // Not valid
+            $dataArr['errorMsg'] = "Upload the file";
+            echo json_encode($dataArr);
+        } else { // Valid
+
+            if ($file = $this->request->getFile('photo')) {
+                if ($file->isValid() && !$file->hasMoved()) {
+                    // Get file name and extension
+                    $name =  $this->request->getPost('salutation')  . $this->request->getPost('firstname') . "_" . $this->request->getPost('lastname') . "." . $file->getClientExtension();  //Give random name to file
+                    $userData['photo'] = $name;
+                    //$ext = $file->getClientExtension();
+
+                    // Fetch uploadURL from app.php file
+                    $uploadProfileURL = config(App::class)->uploadprofilePath;
+
+                    $uploadProfileURL = $uploadProfileURL . "/";
+
+                    // Desired folder structure
+                    if (!file_exists($uploadProfileURL)) { // Use file_exists() for general checks
+                        mkdir($uploadProfileURL, 0777, true);
+                    } else {
+                        // Folder already exists, handle accordingly (e.g., notify user or proceed with other actions)
+                    }
+
+                    // File path to display preview
+                    $file->move($uploadProfileURL, $name);
+                    $filepath = $uploadProfileURL . $name;
+                    chmod($filepath, 0777);
+                    //print($filepath);
+
+                    $profileUpdated =  $userModel->update($user_id, $userData);
+                    if ($profileUpdated) {
+                        $message['successMsg'] = "Profile updated successfully.";
+                        $message['photoPath'] = base_url('dish2o_admin/') . 'faculties/resource?photo=' . $name;
+                        echo json_encode($message);
+                    } else {
+                        $message['errorMsg'] = "Failed to update successfully.";
+                        echo json_encode($message);
+                    }
+                }
+            }
+        }
+        //print $user_id;
+        //die();
+
+    }
+
+    public function resource()
+    {
+        $filename = $this->request->getGet('photo');
+        $filepath = WRITEPATH . 'uploads/profile/' . $filename;
+
+        $mime = mime_content_type($filepath);
+        header('Content-Length: ' . filesize($filepath));
+        header("Content-Type: $mime");
+        header('Content-Disposition: inline; filename="' . $filepath . '";');
+        readfile($filepath);
+        exit();
+
+    }
+
+    public function deleteProfile()
+    {
+        $userModel = new UserModel();
+
+        $user_id = $this->request->getPost('user_id');
+        $userData['deleted_at'] = date("Y-m-d");
+        $profileDeleted =  $userModel->update($user_id, $userData);
+
+        if ($profileDeleted) {
+            $dataArr['successMsg'] = "Profile deleted successfully.";
+        } else {
+            $dataArr['errorsMsg'] = "Cannot delete Profile!";
+        }
+
+        echo json_encode($dataArr); // Return a JSON response
+    }
+
+    public function addNewCollege()
+    {
+
+        $facultyModel = new FacultyModel();
+        $userData = array();
+
+        $userData['user_id'] = $this->sessionUser['id'];
+        $userData['college_id'] = $this->request->getPost('college_id');
+        $userData['appointment_type'] = $this->request->getPost('appointment_type');
+        $userData['current_designation_id'] = $this->request->getPost('current_designation_id');
+        $userData['from_date'] = $this->request->getPost('from_date');
+        $userData['to_date'] = $this->request->getPost('to_date');
+        $collegeAdded =  $facultyModel->save($userData);
+        if ($collegeAdded) {
+            $message['successMsg'] = "College added successfully.";
             echo json_encode($message);
         } else {
-            $message['errorMsg'] = "Failed to updated successfully.";
+            $message['errorMsg'] = "College added successfully.";
             echo json_encode($message);
         }
         //print $user_id;
@@ -209,24 +313,24 @@ class Faculty extends BaseController
 
     }
 
-    public function deleteProfile()
+
+    public function deleteFacultyCollege()
     {
-        $userModel = new UserModel();
-    
-        $user_id = $this->request->getPost('user_id');
-        $userData['deleted_at'] =date("Y-m-d");
-        $profileDeleted =  $userModel->update($user_id,$userData);
-        
-        if ($profileDeleted) {
-            $dataArr['successMsg'] = "Profile deleted successfully.";
-            
+        $facultyModel = new FacultyModel();
+
+        $faculty_id = $this->request->getPost('faculty_id');
+        $facultycollegeDeleted =  $facultyModel->delete($faculty_id, true);
+        //print($facultyModel->getLastQuery());
+        //die;
+        if ($facultycollegeDeleted) {
+            $dataArr['successMsg'] = "Faculty College deleted successfully.";
         } else {
-            $dataArr['errorsMsg'] = "Cannot delete Profile!";
-           
+            $dataArr['errorsMsg'] = "Cannot delete College!";
         }
 
         echo json_encode($dataArr); // Return a JSON response
     }
+
     /*
     public function edit(): string
     {

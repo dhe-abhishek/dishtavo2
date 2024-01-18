@@ -76,7 +76,7 @@
                           ?></td>
                       <td><?php echo $eachprogramCourse['code']; ?></td>
                       <td>
-                        <form method="post" action="<?= base_url('dish2o_admin/template') ?>" style="float:left;">
+                        <form method="get" action="<?= base_url('dish2o_admin/template') ?>" style="float:left;">
                           <input type="hidden" name="programmecourse_id" id="programmecourse_id" value="<?php echo $eachprogramCourse['id']; ?>" />
                           <button class="btn btn-success" type="submit" data-toggle="tooltip" data-placement="top" title="Template" data-original-title="Tooltip top">T</button>
                         </form>

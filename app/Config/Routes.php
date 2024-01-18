@@ -17,6 +17,7 @@ $routes->get('/', 'Home::index');
  */
 $routes->get('/dish2o_admin', 'admin\Login::index');
 $routes->get('/dish2o_admin/login', 'admin\Login::index');
+$routes->get('/dish2o_admin/logout', 'admin\Logout::index');
 $routes->post('/dish2o_admin/validatelogin', 'admin\Login::validatelogin');
 $routes->get('/dish2o_admin/home', 'admin\Home::index', ['as' => 'adminhome']);
 
@@ -28,7 +29,7 @@ $routes->post('/dish2o_admin/colleges/edit', 'admin\College::edit');
 $routes->post('/dish2o_admin/colleges/update', 'admin\College::update');
 
 //Manage Template
-$routes->post('/dish2o_admin/template', 'admin\Template::index');
+$routes->get('/dish2o_admin/template', 'admin\Template::index');
 
 $routes->post('/dish2o_admin/template/saveUnit', 'admin\template::saveUnit');
 $routes->post('/dish2o_admin/template/deleteUnit', 'admin\template::deleteUnit');
@@ -43,8 +44,17 @@ $routes->post('/dish2o_admin/template/deleteVideo', 'admin\template::deleteVideo
 $routes->post('/dish2o_admin/template/updateVideoPosition', 'admin\template::updateVideoPosition');
 $routes->post('/dish2o_admin/template/saveVideo', 'admin\template::saveVideo');
 
-$routes->post('/dish2o_admin/template/getVideoSuggestion', 'admin\template::getVideoSuggestion');
-$routes->post('/dish2o_admin/template/getUnitSuggestion', 'admin\template::getUnitSuggestion');
+$routes->get('/dish2o_admin/template/getUnitSuggestion', 'admin\template::getUnitSuggestion');
+$routes->get('/dish2o_admin/template/getModuleSuggestion', 'admin\template::getModuleSuggestion');
+$routes->get('/dish2o_admin/template/getVideoSuggestion', 'admin\template::getVideoSuggestion');
+$routes->get('/dish2o_admin/template/getfalcultySuggestion', 'admin\template::getfalcultySuggestion');
+
+$routes->post('/dish2o_admin/template/getVideoCoordinatorDetails', 'admin\template::getVideoCoordinatorDetails');
+$routes->post('/dish2o_admin/template/updateVideoCoordinator', 'admin\template::updateVideoCoordinator');
+$routes->post('/dish2o_admin/template/addRecordingSchedule', 'admin\template::addRecordingSchedule');
+$routes->post('/dish2o_admin/template/addEditingSchedule', 'admin\template::addEditingSchedule');
+$routes->post('/dish2o_admin/template/addVettingSchedule', 'admin\template::addVettingSchedule');
+
 $routes->post('/dish2o_admin/template/getNonAddedLanguageVideos', 'admin\template::getNonAddedLanguageVideos');
 $routes->post('/dish2o_admin/template/getNonAddedLanguages', 'admin\template::getNonAddedLanguages');
 
@@ -63,6 +73,9 @@ $routes->post('/dish2o_admin/faculties/save', 'admin\Faculty::save');
 $routes->post('/dish2o_admin/faculties/facultypersonaldetails', 'admin\Faculty::fetchfacultypersonalDetails');
 $routes->post('/dish2o_admin/faculties/update', 'admin\Faculty::update');
 $routes->post('/dish2o_admin/faculties/deleteProfile', 'admin\Faculty::deleteProfile');
+$routes->post('/dish2o_admin/faculties/addnewcollege', 'admin\Faculty::addNewCollege');
+$routes->post('/dish2o_admin/faculties/deletefacultycollege', 'admin\Faculty::deleteFacultyCollege');
+$routes->get('/dish2o_admin/faculties/resource', 'admin\Faculty::resource');
 
 //Manage Video
 $routes->get('/dish2o_admin/videos', 'admin\Video::index');
@@ -101,8 +114,20 @@ $routes->post('/dish2o_admin/Programmecourse/uploaduea', 'admin\ProgrammeCourse:
 $routes->get('/dish2o_admin/Programmecourse/showueafile', 'admin\ProgrammeCourse::showUEAFile');
 $routes->post('/dish2o_admin/Programmecourse/deleteuea', 'admin\ProgrammeCourse::deleteUEA');
 
+//Manage Blog
+$routes->get('/dish2o_admin/blog', 'admin\Blog::index');
+$routes->get('/dish2o_admin/blog/addnew', 'admin\Blog::addnew');
+$routes->post('/dish2o_admin/blog/save', 'admin\Blog::save');
+$routes->post('/dish2o_admin/blog/edit', 'admin\Blog::edit');
+$routes->post('/dish2o_admin/blog/update', 'admin\Blog::update');
+$routes->get('/dish2o_admin/blog/resource', 'admin\Blog::resource');
+
 //Manage Vetter
 $routes->get('/dish2o_admin/Programmecourse/vetter', 'admin\ProgrammeCourse::fetchvetterData');
+$routes->get('/dish2o_admin/Programmecourse/vetteruploadcontentType', 'admin\ProgrammeCourse::vetterUploadContentType');
+
+//Profile
+$routes->get('/dish2o_admin/profile', 'admin\Profile::index');
 
 /*
 $routes->post('/dish2o_admin/colleges/edit', 'admin\College::edit');

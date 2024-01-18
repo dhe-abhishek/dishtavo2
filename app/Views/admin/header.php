@@ -139,10 +139,10 @@ jQuery("#wishing").html("Good Night!")
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
                         data-toggle="dropdown" aria-expanded="false">
-                        <img src="<?= base_url('public/images/img.jpg') ?>" alt=""><?php /*echo $sessionUser['salutation'].' '.$sessionUser['firstname'].' '.$sessionUser['lastname']  */?>
+                        <img src="<?= base_url('public/images/img.jpg') ?>" alt=""><?php echo $sessionUser['salutation'].' '.$sessionUser['firstname'].' '.$sessionUser['lastname']?>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="javascript:;"> Profile</a>
+                        <a class="dropdown-item" href="<?= base_url('dish2o_admin/profile') ?>"> Profile</a>
                         <!--<a class="dropdown-item" href="javascript:;">
                             <span class="badge bg-red pull-right">50%</span>
                             <span>Settings</span>

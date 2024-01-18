@@ -221,7 +221,7 @@
                     styling: 'bootstrap3'
                 });
                 $('#videodetails').modal('hide');
-                //window.location = window.location;
+                window.location = window.location;
             },
             error: function(xhr, status, error) {
                 // Handle errors

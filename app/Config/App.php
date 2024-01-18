@@ -16,10 +16,15 @@ class App extends BaseConfig
      *
      *    http://example.com/
      */
-    public string $baseURL = 'http://localhost/dishtavo2/';
-    public string $uploadquadDataPath='D:/xampp/htdocs/dishtavo2/writable/uploads/quadData';
-    public string $uploadueaDataPath='D:/xampp/htdocs/dishtavo2/writable/uploads/ueaData';
-    public string $quadDataURL='http://localhost/dishtavo2/writable/uploads/quadData';
+    //public string $baseURL = 'http://localhost/dishtavo2/';
+    public string $baseURL = 'http://localhost/Abhishek-Dishtavo2/dishtavo2/';
+    public string $uploadquadDataPath='D:/xampp/htdocs/Abhishek-Dishtavo2/dishtavo2/writable/uploads/quadData';
+    public string $uploadueaDataPath='D:/xampp/htdocs/Abhishek-Dishtavo2/dishtavo2/writable/uploads/ueaData';
+    public string $quadDataURL='http://localhost/Abhishek-Dishtavo2/dishtavo2/writable/uploads/quadData';
+    public string $uploadprofilePath='D:/xampp/htdocs/Abhishek-Dishtavo2/dishtavo2/writable/uploads/profile';
+
+    public string $blogPath='D:/xampp/htdocs/Abhishek-Dishtavo2/dishtavo2/writable/uploads/blog';
+    public string $blogURL='http://localhost/Abhishek-Dishtavo2/dishtavo2/writable/uploads/blog';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.

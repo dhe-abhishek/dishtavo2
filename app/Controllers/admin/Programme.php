@@ -9,6 +9,33 @@ use App\Controllers\BaseController;
 
 class Programme extends BaseController
 {
+
+
+
+    var $sessionUser = array();
+    var $roleMenu = array();
+    var $session = array();
+    
+    public function __construct()
+    {
+        // Your constructor logic here
+        // This will be executed every time an instance of the controller is created
+        $this->session = \Config\Services::session();
+
+        if (!$this->session->has('user')) {
+           $url = base_url('dish2o_admin/login');
+                header("location:" . $url);
+                exit;
+        }
+
+        $this->sessionUser = $this->session->get('user');
+
+       // $menu = new MenuModel();
+       // $roleId =1;//user logged in users role ID
+        //$this->roleMenu = $menu->getMenuForRole($roleId);
+    }
+
+
     public function index(): string
     {
         $dataArr = array();
@@ -16,8 +43,9 @@ class Programme extends BaseController
         $dataArr['menu'] = "Programme";
         $dataArr['subMenu'] = "List";
         $dataArr['viewPage'] = 'admin/programme/list';
+        $dataArr['sessionUser'] =  $this->sessionUser;
 
-        $sessionData = session()->get('user');
+      
 
         $programmeModel = new ProgrammeModel();
 
@@ -37,6 +65,7 @@ class Programme extends BaseController
         $dataArr['menu'] = "Programme";
         $dataArr['subMenu'] = "add";
         $dataArr['viewPage'] = 'admin/programme/add';
+        $dataArr['sessionUser'] =  $this->sessionUser;
 
         $sessionData = session()->get('user');
         //print_r($sessionData);
@@ -51,6 +80,7 @@ class Programme extends BaseController
         $dataArr['menu'] = "Programme";
         $dataArr['subMenu'] = "";
         $dataArr['successMsg'] = "";
+        $dataArr['sessionUser'] =  $this->sessionUser;
 
         $programmeModel = new ProgrammeModel();
 
@@ -106,6 +136,7 @@ class Programme extends BaseController
         $dataArr['menu'] = "Programme";
         $dataArr['subMenu'] = "edit";
         $dataArr['viewPage'] = 'admin/programme/edit';
+        $dataArr['sessionUser'] =  $this->sessionUser;
 
         $sessionData = session()->get('user');
         $programmeId = $this->request->getPost('programme_id');
@@ -126,6 +157,7 @@ class Programme extends BaseController
         $dataArr['menu'] = "Programme";
         $dataArr['subMenu'] = "";
         $dataArr['successMsg'] = "";
+        $dataArr['sessionUser'] =  $this->sessionUser;
 
         $programmeModel = new ProgrammeModel();
 

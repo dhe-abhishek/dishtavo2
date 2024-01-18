@@ -10,6 +10,12 @@ use App\Models\ProgrammeCourseUnitModel;
 use App\Models\ProgrammeCourseUnitModuleModel;
 use App\Models\ModuleVideoModel;
 use App\Models\LanguageModel;
+use App\Models\FacultyModel;
+use App\Models\StudioModel;
+use App\Models\RecordingScheduleModel;
+use App\Models\EditingScheduleModel;
+use App\Models\VettingScheduleModel;
+use App\Models\UserModel;
 use App\Controllers\BaseController;
 
 class Template extends BaseController
@@ -17,7 +23,6 @@ class Template extends BaseController
     var $sessionUser = array();
     var $roleMenu = array();
     var $session = array();
-    var $programmeCourseId = 0;
 
     public function __construct()
     {
@@ -25,17 +30,17 @@ class Template extends BaseController
         // This will be executed every time an instance of the controller is created
         $this->session = \Config\Services::session();
 
-        /* if (!$this->session->has('user')) {
-           $url = base_url('dish2o_admin/login');
-                header("location:" . $url);
-                exit;
-        } */
+        if (!$this->session->has('user')) {
+            $url = base_url('dish2o_admin/login');
+            header("location:" . $url);
+            exit;
+        }
 
         $this->sessionUser = $this->session->get('user');
 
         //$menu = new MenuModel();
-       // $roleId =1;//user logged in users role ID
-       // $this->roleMenu = $menu->getMenuForRole($roleId);
+        // $roleId =1;//user logged in users role ID
+        // $this->roleMenu = $menu->getMenuForRole($roleId);
     }
 
     public function index()
@@ -46,16 +51,18 @@ class Template extends BaseController
         $dataArr['subMenu'] = "List";
         $dataArr['viewPage'] = 'admin/template/list';
         $dataArr['sessionUser'] =  $this->sessionUser;
-        
+
         $sessionData = session()->get('user');
 
         $ProgrammeCourseModel = new ProgrammeCourseModel();
+        $programmeCourseId = $this->request->getGet('programmecourse_id');
+        //$templates = $templateModel->where('location', $location)->findAll()
 
         //$templates = $templateModel->where('location', $location)->findAll();
-        $this->programmeCourseId=$this->request->getPost('programmecourse_id');
-        $dataArr['courseDetails'] = $ProgrammeCourseModel->getProgramCourseDetails($this->programmeCourseId);
-        $dataArr['template'] = $ProgrammeCourseModel->getProgramCourseTemplate($this->programmeCourseId);
-
+        $dataArr['courseDetails'] = $ProgrammeCourseModel->getProgramCourseDetails($programmeCourseId);
+        $dataArr['template'] = $ProgrammeCourseModel->getProgramCourseTemplate($programmeCourseId);
+        //print_r($dataArr['template']);
+        //die;
         //get all units
         $unitModel = new UnitModel();
         $dataArr['units'] = $unitModel->where('is_active', 1)->orderBy('id', 'asc')->findAll();
@@ -74,16 +81,27 @@ class Template extends BaseController
         //print_r($dataArr['units']);
 
         //get all modules
-        $moduleModel = new ModuleModel();
-        $dataArr['modules'] = $moduleModel->where('is_active', 1)->orderBy('id', 'asc')->findAll();
+       // $moduleModel = new ModuleModel();
+       // $dataArr['modules'] = $moduleModel->where('is_active', 1)->orderBy('id', 'asc')->findAll();
 
         //get all videos
-        $videoModel = new VideoModel();
-        $dataArr['videos'] = $videoModel->where('is_active', 1)->orderBy('id', 'asc')->findAll();
+       // $videoModel = new VideoModel();
+       // $dataArr['videos'] = $videoModel->where('is_active', 1)->orderBy('id', 'asc')->findAll();
 
         //get all videos
         $languageModel = new LanguageModel();
         $dataArr['languages'] = $languageModel->orderBy('id', 'asc')->findAll();
+
+        //get all studios
+        $studioModel = new StudioModel();
+        $dataArr['studios'] = $studioModel->orderBy('id', 'asc')->findAll();
+
+        //get all editors i.e. role id 4
+        $userModel = new UserModel();
+        $dataArr['editors'] = $userModel->getUsers(4);
+
+        //get all editors i.e. role id 5
+        //$dataArr['faculties'] = $userModel->getUsers(5);
 
         // print "<pre>";
         //print_r($dataArr['template']);
@@ -323,6 +341,7 @@ class Template extends BaseController
             $userData['created_by'] = 1; //add session user id
             $userData['name'] = $this->request->getPost('videoname');
             $userData['video_url'] = $this->request->getPost('video_url');
+            $userData['language_id'] = $this->request->getPost('language_id');
 
             $videoAdded = $videoModel->save($userData);
             $videoId = $videoModel->getInsertID();
@@ -392,11 +411,12 @@ class Template extends BaseController
 
     public function getUnitSuggestion()
     {
-        $search = $this->request->getPost('search');
+        $search =  $_GET['query']; //$this->request->getPost('query');
         //$suggestions = $this->searchModel->getSuggestions($search);
 
-        $programmeCourseModel = new ProgrammeCourseModel();
-        $suggestions = $programmeCourseModel->getUnitSuggestions($search);
+        $unitModel = new UnitModel();
+        $suggestions = $unitModel->like('name', $search)->findAll();
+        //$suggestions = $programmeCourseModel->getUnitSuggestions($search);
 
         //print  $programmeCourseModel->getLastQuery();
 
@@ -411,27 +431,119 @@ class Template extends BaseController
 
         echo json_encode($data);
     }
-    public function getVideoSuggestion()
+
+    public function getModuleSuggestion()
     {
-        $search = $this->request->getPost('search');
+        $search =  $this->request->getGet('query');
         //$suggestions = $this->searchModel->getSuggestions($search);
 
-        $programmeCourseModel = new ProgrammeCourseModel();
-        $suggestions = $programmeCourseModel->getVideoSuggestions($search);
+        $moduleModel = new ModuleModel();
+        $suggestions = $moduleModel->like('name', $search)->findAll();
 
         //print  $programmeCourseModel->getLastQuery();
 
         $data = [];
         foreach ($suggestions as $suggestion) {
             $data[] = [
-                'value' => $suggestion['video_url'],
-                'label' => $suggestion['name']
+                'value' => $suggestion['name'],
+                'label' => $suggestion['name'],
+                'id' => $suggestion['id']
             ];
         }
 
         echo json_encode($data);
     }
 
+    public function getVideoSuggestion()
+    {
+        //print $_GET['query'];
+        $search =  $_GET['query']; //$this->request->getPost('query');
+        //$suggestions = $this->searchModel->getSuggestions($search);
+        $moduleId =  $_GET['module_id'];
+
+        $programmeCourseModel = new ProgrammeCourseModel();
+        $suggestions = $programmeCourseModel->getVideoSuggestions($search, $moduleId);
+
+        //print  $programmeCourseModel->getLastQuery();
+
+        $data = [];
+        foreach ($suggestions as $suggestion) {
+            $data[] = [
+                'id' => $suggestion['id'],
+                'label' => $suggestion['name'] . '(' . $suggestion['video_url'] . ')',
+                'value' => $suggestion['name'] . '(' . $suggestion['video_url'] . ')'
+            ];
+        }
+        echo json_encode($data);
+
+        //$this->output->setJSON($suggestions);
+    }
+
+    public function getfalcultySuggestion()
+    {
+        //print $_GET['query'];
+        $search =  $_GET['query']; //$this->request->getPost('query');
+        //$suggestions = $this->searchModel->getSuggestions($search);
+        // $moduleId =  $_GET['module_id'];
+
+        $facultyModel = new FacultyModel();
+        $suggestions = $facultyModel->getAllFacultyNames($search);
+
+        //print  $programmeCourseModel->getLastQuery();
+
+        $data = [];
+        foreach ($suggestions as $suggestion) {
+            $data[] = [
+                'id' => $suggestion['id'],
+                'label' => $suggestion['firstname'] . ' ' . $suggestion['lastname'],
+                'value' => $suggestion['firstname'] . ' ' . $suggestion['lastname'],
+                'email' => $suggestion['email'],
+                'mobile' => $suggestion['mobile'],
+            ];
+        }
+        echo json_encode($data);
+
+        //$this->output->setJSON($suggestions);
+    }
+
+    public function getVideoCoordinatorDetails()
+    {
+        $id =  $this->request->getPost('video_coordinator_id');
+
+        $facultyModel = new FacultyModel();
+        $suggestions = $facultyModel->getFacultyDetails($id);
+
+        //print  $programmeCourseModel->getLastQuery();
+
+        //$data = [];
+        //foreach ($suggestions as $suggestion) {
+        $data['id'] = $suggestions['id'];
+        $data['name'] = $suggestions['firstname'] . ' ' . $suggestions['lastname'];
+        $data['email'] = $suggestions['email'];
+        $data['mobile'] = $suggestions['mobile'];
+        //}
+
+        //rint $data;
+        echo json_encode($data);
+    }
+
+    public function updateVideoCoordinator()
+    {
+        $outArr = array();
+        $data = array();
+        $data['user_id'] =  $this->request->getPost('video_faculty_id'); //user ID of faculty
+        $videoId =  $this->request->getPost('selected_video_id');
+
+        $videoModel = new VideoModel();
+        $updated = $videoModel->update($videoId, $data);
+
+        if ($updated) {
+            $outArr['successMsg'] = "Video Coordinator updated Successfully";
+        } else {
+            $outArr['errorMsg'] = "Cannot update Video Coordinator, Please try again later!";
+        }
+        echo json_encode($outArr);
+    }
 
     public function getNonAddedLanguageVideos()
     {
@@ -440,12 +552,12 @@ class Template extends BaseController
         $progCourseUnitModuleId =  $this->request->getPost('programme_course_unit_module_id');
         $nonAddedLanguageVideos = $programmeCourseModel->getNonAddedLanguageVideos($progCourseUnitModuleId);
 
-       // echo json_encode($nonAddedLanguageVideos); // Return a JSON response
+        // echo json_encode($nonAddedLanguageVideos); // Return a JSON response
         $outStr = '';
-        $outStr.= '<option value="">Select Video</option>';
+        $outStr .= '<option value="">Select Video</option>';
 
-        foreach($nonAddedLanguageVideos as $eachVideo){
-            $outStr.= '<option value='.$eachVideo['id'].'>'.$eachVideo['name'].' | '.$eachVideo['language'].' | ('.$eachVideo['video_url'].')</option>';
+        foreach ($nonAddedLanguageVideos as $eachVideo) {
+            $outStr .= '<option value=' . $eachVideo['id'] . '>' . $eachVideo['name'] . ' | ' . $eachVideo['language'] . ' | (' . $eachVideo['video_url'] . ')</option>';
         }
 
         print $outStr;
@@ -459,16 +571,147 @@ class Template extends BaseController
         $nonAddedLanguages = $programmeCourseModel->getNonAddedLanguages($progCourseUnitModuleId);
         //  print  $programmeCourseModel->getLastQuery();
 
-       // echo json_encode($nonAddedLanguages); // Return a JSON response
+        // echo json_encode($nonAddedLanguages); // Return a JSON response
 
-       $outStr = '';
-       $outStr.= '<option value="">Select Language</option>';
-       foreach($nonAddedLanguages as $eachLang){
-           $outStr.= '<option value='.$eachLang['id'].'>'.$eachLang['name'].'</option>';
-       }
+        $outStr = '';
+        $outStr .= '<option value="">Select Language</option>';
+        foreach ($nonAddedLanguages as $eachLang) {
+            $outStr .= '<option value=' . $eachLang['id'] . '>' . $eachLang['name'] . '</option>';
+        }
 
-       print $outStr;
+        print $outStr;
     }
+
+    public function addRecordingSchedule()
+    {
+        $outArr = array();
+        $data = array();
+
+        $sessionUser = $this->sessionUser;
+        //print_r($sessionUser);
+        //die;
+
+        $recordingScheduleId =$this->request->getPost('recording_schedule_id');
+
+        $data['video_id'] =  $this->request->getPost('recording_video_id'); //user ID of faculty
+        $data['studio_id'] =  $this->request->getPost('recording_studio_id'); //user ID of faculty
+        $data['recording_date'] =  $this->request->getPost('recording_date'); //user ID of faculty
+        $data['recording_status'] =  $this->request->getPost('recording_status'); //user ID of faculty
+        $data['remarks'] =  $this->request->getPost('recording_remarks'); //user ID of faculty
+        $data['created_by'] =  $sessionUser['id']; //user ID of faculty
+        
+
+        $recordingScheduleModel = new RecordingScheduleModel();
+
+        if ($recordingScheduleId) {
+            $updated = $recordingScheduleModel->update($recordingScheduleId, $data);
+            if ($updated) {
+                $outArr['successMsg'] = "Recording schedule updated Successfully";
+            } else {
+                $outArr['errorMsg'] = "Cannot update recording schedule, Please try again later!";
+            }
+        }
+        else{
+            $inserted = $recordingScheduleModel->insert($data);
+            if ($inserted) {
+                $outArr['successMsg'] = "Recording schedule added Successfully";
+            } else {
+                $outArr['errorMsg'] = "Cannot add recording schedule, Please try again later!";
+            }
+        }
+        
+
+        echo json_encode($outArr);
+    }
+
+    public function addEditingSchedule()
+    {
+        $outArr = array();
+        $data = array();
+
+        $sessionUser = $this->sessionUser;
+        //print_r($sessionUser);
+        //die;
+
+        $editingScheduleId =$this->request->getPost('editing_schedule_id');
+
+        $data['video_id'] =  $this->request->getPost('editing_video_id'); //user ID of faculty
+        $data['user_id'] =  $this->request->getPost('editor_id'); //user ID of faculty
+        $data['allocation_date'] =  $this->request->getPost('editing_date'); //user ID of faculty
+        $data['status'] =  $this->request->getPost('editing_status'); //user ID of faculty
+        $data['completion_date'] =  $this->request->getPost('editing_cmpl_date'); //user ID of faculty
+        $data['remarks'] =  $this->request->getPost('editing_remards'); //user ID of faculty
+        $data['created_by'] =  $sessionUser['id']; //user ID of faculty
+        
+
+        $editingScheduleModel = new EditingScheduleModel();
+
+        if ($editingScheduleId) {
+            $updated = $editingScheduleModel->update($editingScheduleId, $data);
+            if ($updated) {
+            $outArr['successMsg'] = "Editing schedule updated Successfully";
+        } else {
+            $outArr['errorMsg'] = "Cannot update editing schedule, Please try again later!";
+        }
+        }
+        else{
+            $inserted = $editingScheduleModel->insert($data);
+            if ($inserted) {
+            $outArr['successMsg'] = "Editing schedule added Successfully";
+        } else {
+            $outArr['errorMsg'] = "Cannot add editing schedule, Please try again later!";
+        }
+        }
+        
+
+        echo json_encode($outArr);
+    }
+
+    public function addVettingSchedule()
+    {
+        $outArr = array();
+        $data = array();
+
+        $sessionUser = $this->sessionUser;
+        //print_r($sessionUser);
+        //die;
+
+        $vettingScheduleId =$this->request->getPost('vetting_schedule_id');
+
+        $data['video_id'] =  $this->request->getPost('vetting_video_id'); //user ID of faculty
+        $data['user_id'] =  $this->request->getPost('vetter_faculty_id'); //user ID of faculty
+        $data['allocation_date'] =  $this->request->getPost('vetting_date'); //user ID of faculty
+        $data['status'] =  $this->request->getPost('vetting_status'); //user ID of faculty
+        $data['vet_cmpl_date'] =  $this->request->getPost('vetting_cmpl_date');
+        $data['vet_url'] =  $this->request->getPost('vetting_url'); //user ID of faculty
+        $data['vet_action'] =  $this->request->getPost('vetting_action'); //user ID of faculty
+        $data['vet_remarks'] =  $this->request->getPost('vetting_remarks'); //user ID of faculty
+        $data['created_by'] =  $sessionUser['id']; //user ID of faculty
+        
+        $vettingScheduleModel = new VettingScheduleModel();
+
+        if ($vettingScheduleId) {
+            $updated = $vettingScheduleModel->update($vettingScheduleId, $data);
+            if ($updated) {
+            $outArr['successMsg'] = "Editing schedule updated Successfully";
+        } else {
+            $outArr['errorMsg'] = "Cannot update editing schedule, Please try again later!";
+        }
+        }
+        else{
+            $inserted = $vettingScheduleModel->insert($data);
+            if ($inserted) {
+            $outArr['successMsg'] = "Editing schedule added Successfully";
+        } else {
+            $outArr['errorMsg'] = "Cannot add editing schedule, Please try again later!";
+        }
+        }
+        
+
+        echo json_encode($outArr);
+    }
+
+
     //END Manage Videos-----------------------------------------------------------------------
     /*
     public function edit(): string

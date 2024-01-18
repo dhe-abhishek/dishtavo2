@@ -385,7 +385,7 @@
 <script>
   $(document).ready(function() {
     $(".facultymodal").click(function() {
-      alert($(this).data('moduleid') + '' + $(this).data('pcumid'));
+      //alert($(this).data('moduleid') + '' + $(this).data('pcumid'));
       $("#moduleid").val($(this).data('moduleid'));
       $("#pcumid").val($(this).data('pcumid'));
       //var formData = new FormData(this);
