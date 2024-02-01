@@ -207,6 +207,12 @@
                     <li><a href="<?= base_url('dish2o_admin/Programmecourse/addnew') ?>">Add Programme Course</a></li>
                 </ul>
             </li>
+            <li><a><i class="fa fa-edit"></i> Reports <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="<?= base_url('dish2o_admin/report') ?>">Incomplete Modules</a></li>
+                   
+                </ul>
+            </li>
             <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="form.html">General Form</a></li>

@@ -143,4 +143,18 @@ class FacultyModel extends Model
             print_r($e);
         }
     }
+
+    /*Function to retrieve Faculty Count
+    * Author: Abhishek G.
+    */
+    public function getAllFacultyCount()
+    {
+        $query = $this->db->table('dsh2_user AS u')
+            ->select('count(f.user_id) as faculty_count')
+            ->join('dsh2_faculty f', 'f.user_id = u.id', 'inner')
+            ->join('dsh2_user_role r', 'r.user_id = u.id AND r.role_id =5', 'inner')
+            ->get(1);
+        $facultyCount = $query->getResultArray(); // Adjust based on your needs
+        return $facultyCount[0];
+    }
 }

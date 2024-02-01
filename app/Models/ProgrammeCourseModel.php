@@ -303,4 +303,169 @@ class ProgrammeCourseModel extends Model
         //die;
         return $allUnits;
     }
+
+
+
+    //Function to retrieve Programmewise count of Subjects
+    //Abhishek G.
+    public function fetchProgrammeSubjectCount()
+    {
+
+        $programmecoursecount = array();
+        $query = $this->db->table('dsh2_programme_course AS pc')
+            ->select('p.name as Programme_name,count(pc.subject_id) as Subject_Count')
+            ->join('dsh2_subject AS s', 's.id = pc.subject_id', 'inner')
+            ->join('dsh2_programme AS p', 'p.id = pc.program_id', 'inner')
+            ->groupBy('p.id')
+            ->get();
+
+        $programmesubjectcount = $query->getResultArray();
+        //print $this->db->getLastQuery();
+        //print "<pre>";
+        //print_r($programmecoursecount);
+        //die;
+        return $programmesubjectcount;
+    }
+
+
+    //Function to retrieve subjects based on ProgrammeId
+    //Abhishek G.
+    public function getSubjectsByProgrammeId($programmeId)
+    {
+        $subjects = array();
+        $query = $this->db->table('dsh2_programme_course AS pc')
+            ->select('s.id as subject_id, s.name as subject_name, pc.program_id as program_id')
+            ->where('pc.program_id', $programmeId)
+            ->join('dsh2_subject As s', 's.id=pc.subject_id')
+            ->get();
+
+        $subjects = $query->getResultArray();
+        //print $this->db->getLastQuery();
+        //print "<pre>";
+        //print_r($subjects);
+        //die;
+        return $subjects;
+    }
+
+
+    //Function to retrieve subjects based on ProgrammeId
+    //Abhishek G.
+    public function getCourseBySubjectId($subjectId, $programId)
+    {
+        $courses = array();
+        $query = $this->db->table('dsh2_programme_course AS pc')
+            ->select('c.id as course_id, c.name as course_name')
+            ->where('pc.program_id', $programId)
+            ->where('pc.subject_id', $subjectId)
+            ->join('dsh2_subject As s', 's.id=pc.subject_id')
+            ->join('dsh2_course As c', 'c.id=pc.course_id')
+            ->get();
+
+        $courses = $query->getResultArray();
+        return $courses;
+    }
+
+
+    //Function to retrieve incomplete Modules
+    //Abhishek G.
+    public function getIncompleteModules($programId, $courseId)
+    {
+
+        $query = $this->db->table('dsh2_programme_course AS pc')
+            ->select('u.name as unit_name,pcu.id as prog_course_unit_id,u.id as unit_id,s.name as subject_name,c.name as course_name,p.name as program_name')
+            ->join('dsh2_course AS c', 'c.id = pc.course_id', 'inner')
+            ->join('dsh2_subject AS s', 's.id = pc.subject_id', 'inner')
+            ->join('dsh2_programme_course_unit AS pcu', 'pcu.programme_course_id = pc.id', 'inner')
+            ->join('dsh2_unit AS u', 'u.id = pcu.unit_id', 'inner')
+            ->join('dsh2_programme AS p', 'p.id = pc.program_id', 'inner')
+            ->where('pc.program_id', $programId)
+            ->where('pc.course_id', $courseId)
+            ->orderby('pcu.position', 'ASC')
+            ->get();
+
+        //print $this->db->getLastQuery();
+        //die;
+        $allUnits = $query->getResultArray();
+
+        $outArr = array();
+        $tempModules = array();
+        foreach ($allUnits as &$eachUnit) {
+            //print_r($eachUnit);
+            //get unit modules
+            $modulesquery = $this->db->table('dsh2_programme_course_unit_module AS um')
+                ->select('m.name as module_name, um.id as programme_course_unit_module_id , m.id as module_id')
+                ->join('dsh2_module AS m', 'm.id = um.module_id', 'inner')
+                ->where('um.programme_course_unit_id', $eachUnit['prog_course_unit_id'])
+                ->orderby('um.position', 'ASC')
+                ->get();
+            $modules = $modulesquery->getResultArray();
+
+            //$eachUnit['modules']=$modules;
+            foreach ($modules as &$eachModule) {
+                $videoquery = $this->db->table('dsh2_module_video AS mv')
+                    ->select('v.name as video_name,l.name as language, l.code as language_code,v.id as video_id')
+                    ->select('mv.id as module_video_id')
+                    ->select($eachModule['module_id'] . ' AS module_id')
+                    ->join('dsh2_video AS v', 'v.id = mv.video_id', 'inner')
+                    ->join('dsh2_language AS l', 'l.id = v.language_id', 'inner')
+                    ->join('dsh2_programme_course_unit_module AS um', 'um.id=mv.unit_module_id')
+                    ->where('mv.unit_module_id', $eachModule['programme_course_unit_module_id'])
+                    ->get();
+
+
+                $videos = $videoquery->getResultArray();
+
+
+
+                //print "<BR>".$this->db->getLastQuery();
+                $eachModule['videos_count'] = count($videos);
+                $eachModule['videos'] = $videos;
+                $tempModules[] = $eachModule;
+            }
+        }
+        $eachUnit['modules_count'] = count($tempModules);
+        $eachUnit['modules'] = $tempModules;
+
+        $outArr[] = $eachUnit;
+
+
+        $incompletemodules = array();
+
+        foreach ($outArr as $unit) {
+            $subject_name = $unit['subject_name'];  // Assuming 'subject_name' exists in the 'unit' array
+            $course_name = $unit['course_name'];
+            $program_name=$unit['program_name'];
+            $unitModules = array();
+            foreach ($unit['modules'] as $module) {
+                $availableLanguages = array();
+                foreach ($module['videos'] as $video) {
+                    $availableLanguages[] = $video['language_code'];
+                }
+
+                $missingLanguages = array_diff(['EN', 'KN'], $availableLanguages);
+
+                if (!empty($missingLanguages)) {
+                    $unitModules[] = array(
+                        'module_name' => $module['module_name'],
+                        'missing_language' => implode(', ', $missingLanguages)
+                    );
+                }
+            }
+
+            if (!empty($unitModules)) {
+                $incompletemodules[] = array(
+                    'subject_name' => $subject_name,
+                    'course_name' => $course_name,
+                    'program_name'=> $program_name,
+                    'unit_name' => $unit['unit_name'],
+                    'modules' => $unitModules
+                );
+            }
+        }
+        //print $this->db->getLastQuery();
+        //print "<pre>";
+        //print_r($outArr);
+        //die;
+        return $incompletemodules;
+    }
 }

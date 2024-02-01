@@ -129,6 +129,12 @@ $routes->get('/dish2o_admin/Programmecourse/vetteruploadcontentType', 'admin\Pro
 //Profile
 $routes->get('/dish2o_admin/profile', 'admin\Profile::index');
 
+//Report
+$routes->get('/dish2o_admin/report', 'admin\Report::index');
+$routes->post('/dish2o_admin/report/getsubject', 'admin\Report::getSubjectsByProgrammeId');
+$routes->post('/dish2o_admin/report/getcourse', 'admin\Report::getCourseBySubjectId');
+$routes->post('/dish2o_admin/report/incompletemodules', 'admin\Report::getIncompleteModules');
+
 /*
 $routes->post('/dish2o_admin/colleges/edit', 'admin\College::edit');
 $routes->post('/dish2o_admin/colleges/update', 'admin\College::update');*/

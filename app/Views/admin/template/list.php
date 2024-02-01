@@ -1578,7 +1578,7 @@
       return false;
     }
 
-    if(!langId || !videoUrl || videoName){
+    if(!langId || !videoUrl || !videoName){
       //search_video
       return false;
     }

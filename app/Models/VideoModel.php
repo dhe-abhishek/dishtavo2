@@ -28,4 +28,43 @@ class VideoModel extends Model
         $videoDetails = $query->getResultArray(); // Adjust based on your needs
         return $videoDetails;
     }
+
+
+    //Function to retrieve Video Count
+    //Abhishek G
+    public function getAllVideoCount(){
+
+        $videoCount=array();
+        $query = $this->db->table('dsh2_video AS v')
+            ->select('count(v.id) as video_count') // Select the columns you need from each table with custom aliases
+            ->get(1);
+
+        $videoCount = $query->getResultArray(); // Adjust based on your needs
+        return $videoCount[0];
+    }
+
+    //Function to retrieve Video Count month wise
+    //Abhishek G
+    public function getVideoCountMonthWise(){
+
+        $videoCount=array();
+       /*  $query = $this->db->table('dsh2_video AS v')
+                   ->select('count(v.id) as video_count, DATE_FORMAT(created_at, "%M") as month')
+                   ->where('YEAR(created_at) = 2024')
+                   ->groupBy('DATE_FORMAT(created_at, "%M")')
+                   ->get();  */
+
+         $query = $this->db->table('dsh2_video AS v')
+                   ->select('count(v.id) as video_count, DATE_FORMAT(created_at, "%M %Y") as month')
+                   ->where('created_at >= DATE_SUB(NOW(), INTERVAL 12 MONTH)')
+                   ->groupBy('DATE_FORMAT(created_at, "%M %Y")')
+                   ->get();
+
+        $videoCount = $query->getResultArray(); // Adjust based on your needs
+        //print $this->db->getLastQuery();
+        //print "<pre>";
+        //print_r($videoCount);
+        //die;
+        return $videoCount;
+    }
 }
